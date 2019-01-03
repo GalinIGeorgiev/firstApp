@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using FunApp.Web.Models;
+using FirstApp.Web.Models;
 
-namespace FunApp.Web.Controllers
+namespace FirstApp.Web.Controllers
 {
     public class HomeController : Controller
     {
