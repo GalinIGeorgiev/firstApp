@@ -5,14 +5,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FirstApp.Web.Models;
+using FirstApp.Services;
+using FirstApp.Services.Contracts;
+using FirstApp.Web.Models.Home;
 
 namespace FirstApp.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IArticleService ArticleService;
+
+        public HomeController(IArticleService articleService)
         {
-            return View();
+            this.ArticleService = articleService;
+        }
+        public IActionResult Index(IndexArticleViewModel viewModel)
+        {
+             viewModel.Articles = ArticleService.GiveRandomArticles();
+               
+            return View(viewModel);
         }
 
         public IActionResult Privacy()

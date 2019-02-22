@@ -14,6 +14,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FirstApp.Web.Models;
 using FirstApp.Data;
+using FirstApp.Data.Models;
+using FirstApp.Services;
+using FirstApp.Services.Contracts;
+using FunApp.Data.Common;
 
 namespace FirstApp.Web
 {
@@ -40,10 +44,25 @@ namespace FirstApp.Web
                 options.UseSqlServer(
                     this.Configuration.GetConnectionString("FirstAppContextConnection")));
 
-            services.AddDefaultIdentity<FirstAppUser>()
+            services.AddDefaultIdentity<FirstAppUser>(options =>
+                {
+                    options.Password.RequiredLength = 6;
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequiredUniqueChars = 0;
+                }
+                
+            )
                 .AddEntityFrameworkStores<FirstAppContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            //Application Services
+            services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
+            services.AddScoped<IArticleService, ArticleService>();
+        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,6 +92,9 @@ namespace FirstApp.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            
+
         }
     }
 }

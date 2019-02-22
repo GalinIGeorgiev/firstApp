@@ -1,8 +1,26 @@
-﻿@{
+﻿@using Remotion.Linq.Parsing.Structure.IntermediateModel
+@using System
+@model FirstApp.Web.Models.Home.IndexArticleViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<div>
+
+    @foreach (var article in Model.Articles)
+    {
+        
+
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">@article.Category.Name</div>
+            <div class="card-body">
+                <h5 class="card-title">@article.Category.Name</h5>
+                <p class="card-text">@article.Content</p>
+            </div>
+        </div>
+    }
 </div>
