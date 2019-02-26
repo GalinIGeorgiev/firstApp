@@ -6,12 +6,11 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Linq;
 using System.Threading.Tasks;
-using FirstApp.Data;
+using FirstApp.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using FirstApp.Data.Models;
 
 namespace FirstApp.Web.Areas.Identity.Pages.Account.Manage
 {

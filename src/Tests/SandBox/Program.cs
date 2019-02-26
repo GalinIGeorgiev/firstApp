@@ -13,6 +13,7 @@ using System.Text;
 using AngleSharp.Html.Parser;
 using FirstApp.Data.Models;
 using FunApp.Data.Common;
+using System.Collections.Generic;
 
 namespace SandBox
 {
@@ -39,39 +40,75 @@ namespace SandBox
         private static void SandBoxCode(IServiceProvider serviceProvider)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            var context= serviceProvider.GetService<FirstAppContext>();
+            var context = serviceProvider.GetService<FirstAppContext>();
 
             var repository = serviceProvider.GetService<DbRepository<Article>>();
-            
+
             var parser = new HtmlParser();
             var webClient = new WebClient { Encoding = Encoding.UTF8 };
 
-            var category = new Category() {Name = "Football"};
+            //categiry
+            var category = new Category() { Name = "Football" };
+            var category2 = new Category() { Name = "Formula 1" };
+            var category3 = new Category() { Name = "Box" };
+
+            List<Category> categories = new List<Category>()
+            {
+                category,category2,category3
+            };
+
+            //images
+            Image image = new Image()
+            {
+                ImageUrl =
+                    "https://media.gettyimages.com/photos/liverpool-captain-steven-gerrard-lifts-the-european-cup-after-won-picture-id53158414"
+            };
+            Image image2 = new Image()
+            {
+                ImageUrl =
+                    "https://cdn.vox-cdn.com/uploads/chorus_asset/file/11599051/20180626_formula1_frenchgp_vladsavov00038.jpg"
+            };
+            Image image3 = new Image()
+            {
+                ImageUrl =
+                    "https://images.gulfnews.com/201811/Heavyweight%20champion%20Muhammad%20Ali_resources1.jpg"
+            };
+            List<Image> images = new List<Image>()
+            {
+                image,image2,image3
+            };
+
+
             context.AddAsync(category);
+            context.AddAsync(category2);
+            context.AddAsync(category3);
             context.SaveChanges();
 
+            //article
             var urlPattern = "https://www.sportal.bg/news.php?news=";
-            for (int i = 700000; i < 700050; i++)
+            for (int i = 700100; i < 700150; i++)
             {
                 var url = urlPattern + i;
                 var html = webClient.DownloadString(url);
                 var document = parser.ParseDocument(html);
                 var content = document.QuerySelector("#news_content")?.TextContent;
 
-                if (content!=null)
+                if (content != null)
                 {
                     context.AddAsync(new Article()
                     {
                         Content = content,
-                        Category = category
+                        Category = categories[i%3],
+                        CreatedOn = DateTime.UtcNow.ToString(),
+                        ImageUrl = images[i % 3].ImageUrl
                     });
                 }
 
                 context.SaveChanges();
-                Console.WriteLine("---");               
+                Console.WriteLine("---");
             }
 
-            
+
         }
 
 

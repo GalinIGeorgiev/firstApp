@@ -9,6 +9,6 @@ namespace FirstApp.Data.Models
     // Add profile data for application users by adding properties to the FirstAppUser class
     public class FirstAppUser : IdentityUser
     {
-
+        
     }
 }

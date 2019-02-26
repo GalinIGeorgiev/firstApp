@@ -29,6 +29,10 @@ namespace FirstApp.Data.Migrations
 
                     b.Property<string>("Content");
 
+                    b.Property<string>("CreatedOn");
+
+                    b.Property<string>("ImageUrl");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -98,6 +102,19 @@ namespace FirstApp.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("FirstApp.Data.Models.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ImageUrl");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -213,7 +230,7 @@ namespace FirstApp.Data.Migrations
             modelBuilder.Entity("FirstApp.Data.Models.Article", b =>
                 {
                     b.HasOne("FirstApp.Data.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Articles")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
