@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using FirstApp.Web.Models;
 using FirstApp.Services;
 using FirstApp.Services.Contracts;
-using FirstApp.Web.Models.Home;
+using FirstApp.Services.ViewModels.Home;
 
 namespace FirstApp.Web.Controllers
 {
@@ -21,7 +21,7 @@ namespace FirstApp.Web.Controllers
         }
         public IActionResult Index(IndexArticleViewModel viewModel)
         {
-             viewModel.Articles = ArticleService.GiveRandomArticles();
+             viewModel.Articles = ArticleService.GiveRandomArticles().Take(10).ToList();
                
             return View(viewModel);
         }

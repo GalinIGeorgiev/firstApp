@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Data.Common", "Data\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{2179A3BC-993B-48FB-B538-FBF29D234B5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstApp.Services", "FirstApp.Services\FirstApp.Services.csproj", "{1CBE4BAE-074E-4308-A71B-50DDCE8B0848}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstApp.Services", "FirstApp.Services\FirstApp.Services.csproj", "{1CBE4BAE-074E-4308-A71B-50DDCE8B0848}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstApp.Services.ViewModels", "FirstApp.Services.ViewModels\FirstApp.Services.ViewModels.csproj", "{184E2349-5AE3-4C8E-875A-94EABB4DCF83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{1CBE4BAE-074E-4308-A71B-50DDCE8B0848}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CBE4BAE-074E-4308-A71B-50DDCE8B0848}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CBE4BAE-074E-4308-A71B-50DDCE8B0848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{184E2349-5AE3-4C8E-875A-94EABB4DCF83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{184E2349-5AE3-4C8E-875A-94EABB4DCF83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{184E2349-5AE3-4C8E-875A-94EABB4DCF83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{184E2349-5AE3-4C8E-875A-94EABB4DCF83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{7FD00443-8789-4AF0-8F44-09C324598B15} = {D370172B-D9A6-4487-955A-0028B65444F0}
 		{E13F9816-E450-4B77-BD1E-80A89EE511B9} = {C9E1679F-1FD6-482E-B6EC-8108FFDAD4D1}
 		{1CBE4BAE-074E-4308-A71B-50DDCE8B0848} = {2179A3BC-993B-48FB-B538-FBF29D234B5D}
+		{184E2349-5AE3-4C8E-875A-94EABB4DCF83} = {2179A3BC-993B-48FB-B538-FBF29D234B5D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3382C3E3-FFAB-4FE8-BD75-40133BCBFC3F}

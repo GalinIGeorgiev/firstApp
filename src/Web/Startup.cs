@@ -85,6 +85,7 @@ namespace FirstApp.Web
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+            app.UseStaticFiles();
 
             app.UseMvc(routes =>
             {
