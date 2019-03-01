@@ -101,7 +101,12 @@ namespace SandBox
                         Category = categories[i % 3],
                         CreatedOn = DateTime.UtcNow.ToString(),
                         ImageUrl = images[i % 3].ImageUrl,
-                        Title = "This is Title!!!"
+                        Title = "This is Title!!!",
+                        Images = new List<Image>(),
+                        Reviews = new List<Review>(),
+                        Rating = "5"
+
+                        
                     });
                 }
 

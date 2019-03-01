@@ -18,6 +18,8 @@ using FirstApp.Data.Models;
 using FirstApp.Services;
 using FirstApp.Services.Contracts;
 using FirstApp.Data.Common;
+using FirstApp.Services.Mapping;
+using FirstApp.Services.ViewModels.Home;
 
 namespace FirstApp.Web
 {
@@ -33,6 +35,11 @@ namespace FirstApp.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            AutoMapperConfig.RegisterMappings(
+                typeof(ArticleViewModel).Assembly
+
+                );
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
