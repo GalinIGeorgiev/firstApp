@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\FirstApp.Data.Models\FirstApp.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\FirstApp.Data\FirstApp.Data.csproj" />
+    <ProjectReference Include="..\..\Data\FunApp.Data.Common\FirstApp.Data.Common.csproj" />
+    <ProjectReference Include="..\FirstApp.Services.ViewModels\FirstApp.Services.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -12,8 +12,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using AngleSharp.Html.Parser;
 using FirstApp.Data.Models;
-using FunApp.Data.Common;
 using System.Collections.Generic;
+using FirstApp.Data.Common;
 
 namespace SandBox
 {
@@ -98,9 +98,10 @@ namespace SandBox
                     context.AddAsync(new Article()
                     {
                         Content = content,
-                        Category = categories[i%3],
+                        Category = categories[i % 3],
                         CreatedOn = DateTime.UtcNow.ToString(),
-                        ImageUrl = images[i % 3].ImageUrl
+                        ImageUrl = images[i % 3].ImageUrl,
+                        Title = "This is Title!!!"
                     });
                 }
 

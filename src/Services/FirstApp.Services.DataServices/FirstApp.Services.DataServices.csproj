@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data\FirstApp.Data.Models\FirstApp.Data.Models.csproj" />
+    <ProjectReference Include="..\Data\FirstApp.Data\FirstApp.Data.csproj" />
+    <ProjectReference Include="..\Data\FunApp.Data.Common\FunApp.Data.Common.csproj" />
+    <ProjectReference Include="..\FirstApp.Services.Models\FirstApp.Services.Models.csproj" />
+  </ItemGroup>
+
+</Project>

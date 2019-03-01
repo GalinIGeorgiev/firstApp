@@ -16,8 +16,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Data\FirstApp.Data.Models\FirstApp.Data.Models.csproj" />
-    <ProjectReference Include="..\FirstApp.Services.ViewModels\FirstApp.Services.ViewModels.csproj" />
-    <ProjectReference Include="..\FirstApp.Services\FirstApp.Services.csproj" />
+    <ProjectReference Include="..\Data\FirstApp.Data\FirstApp.Data.csproj" />
+    <ProjectReference Include="..\Data\FunApp.Data.Common\FirstApp.Data.Common.csproj" />
+    <ProjectReference Include="..\Services\FirstApp.Services.ViewModels\FirstApp.Services.ViewModels.csproj" />
+    <ProjectReference Include="..\Services\FirstApp.Services\FirstApp.Services.csproj" />
   </ItemGroup>
 
 </Project>

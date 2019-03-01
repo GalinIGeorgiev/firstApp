@@ -17,7 +17,7 @@ using FirstApp.Data;
 using FirstApp.Data.Models;
 using FirstApp.Services;
 using FirstApp.Services.Contracts;
-using FunApp.Data.Common;
+using FirstApp.Data.Common;
 
 namespace FirstApp.Web
 {

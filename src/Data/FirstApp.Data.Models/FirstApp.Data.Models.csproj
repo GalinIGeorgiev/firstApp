@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FunApp.Data.Common\FunApp.Data.Common.csproj" />
+    <ProjectReference Include="..\FunApp.Data.Common\FirstApp.Data.Common.csproj" />
   </ItemGroup>
 
 </Project>
