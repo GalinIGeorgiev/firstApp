@@ -9,6 +9,16 @@ namespace FirstApp.Data.Models
     // Add profile data for application users by adding properties to the FirstAppUser class
     public class FirstAppUser : IdentityUser
     {
-      
+        public FirstAppUser()
+        {
+            this.Comments = new HashSet<Comment>();
+            this.Reviews = new HashSet<Review>();
+        }
+
+        public string FavoriteSport { get; set; }
+        public string FavoriteTeam { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

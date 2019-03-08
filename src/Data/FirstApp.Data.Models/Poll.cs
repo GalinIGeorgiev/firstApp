@@ -7,6 +7,8 @@ namespace FirstApp.Data.Models
 {
     public class Poll : BaseModel<int>
     {
-        //dictionary vote=+1
+        public IDictionary<string, int> Options { get; set; }
+
+
     }
 }

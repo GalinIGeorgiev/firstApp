@@ -11,6 +11,7 @@ namespace FirstApp.Data.Models
 
         public string Comment { get; set; }
 
+        public int ArticleId { get; set; }
         public Article Article { get; set; }
     }
 }

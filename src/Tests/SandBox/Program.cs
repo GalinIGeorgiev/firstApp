@@ -14,6 +14,7 @@ using AngleSharp.Html.Parser;
 using FirstApp.Data.Models;
 using System.Collections.Generic;
 using FirstApp.Data.Common;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace SandBox
 {
@@ -47,7 +48,7 @@ namespace SandBox
             var parser = new HtmlParser();
             var webClient = new WebClient { Encoding = Encoding.UTF8 };
 
-            //categiry
+            //category
             var category = new Category() { Name = "Football" };
             var category2 = new Category() { Name = "Formula 1" };
             var category3 = new Category() { Name = "Box" };
@@ -56,6 +57,10 @@ namespace SandBox
             {
                 category,category2,category3
             };
+
+            context.AddAsync(category);
+            context.AddAsync(category2);
+            context.AddAsync(category3);
 
             //images
             Image image = new Image()
@@ -79,9 +84,32 @@ namespace SandBox
             };
 
 
-            context.AddAsync(category);
-            context.AddAsync(category2);
-            context.AddAsync(category3);
+            context.AddAsync(image);
+            context.AddAsync(image2);
+            context.AddAsync(image3);
+
+            //Teams
+            Team team1 = new Team()
+            {
+                Name = "Liverpool"
+            };
+            Team team2 = new Team()
+            {
+                Name = "Red Bull Racing"
+            }; Team team3 = new Team()
+            {
+                Name = "Muhammad Ali"
+            };
+
+            List<Team> teams = new List<Team>()
+            {
+                team1,team2,team3
+            };
+
+            context.AddAsync(team1);
+            context.AddAsync(team2);
+            context.AddAsync(team3);
+
             context.SaveChanges();
 
             //article
@@ -100,14 +128,12 @@ namespace SandBox
                         Content = content,
                         Category = categories[i % 3],
                         CreatedOn = DateTime.UtcNow.ToString(),
-                        ImageUrl = images[i % 3].ImageUrl,
                         Title = "This is Title!!!",
-                        Images = new List<Image>(),
-                        Reviews = new List<Review>(),
-                        Rating = "5"
-
+                        Images = new List<Image>(images.Take(i % 3)),
+                        Team = teams[i%3]
                         
                     });
+
                 }
 
                 context.SaveChanges();

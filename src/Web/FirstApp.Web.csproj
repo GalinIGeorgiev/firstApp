@@ -23,4 +23,11 @@
     <ProjectReference Include="..\Services\FirstApp.Services\FirstApp.Services.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Areas\Administration\Data\" />
+    <Folder Include="Areas\Administration\Models\" />
+    <Folder Include="Areas\Administration\Views\" />
+  </ItemGroup>
+
 </Project>

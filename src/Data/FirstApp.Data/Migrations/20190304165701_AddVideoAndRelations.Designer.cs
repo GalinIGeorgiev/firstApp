@@ -4,14 +4,16 @@ using FirstApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FirstApp.Data.Migrations
 {
     [DbContext(typeof(FirstAppContext))]
-    partial class FirstAppContextModelSnapshot : ModelSnapshot
+    [Migration("20190304165701_AddVideoAndRelations")]
+    partial class AddVideoAndRelations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,8 +75,7 @@ namespace FirstApp.Data.Migrations
 
                     b.Property<int>("FirstAppUserId");
 
-                    b.Property<string>("FirstAppUserId1")
-                        .IsRequired();
+                    b.Property<string>("FirstAppUserId1");
 
                     b.HasKey("Id");
 
@@ -84,7 +85,7 @@ namespace FirstApp.Data.Migrations
 
                     b.HasIndex("FirstAppUserId1");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comment");
                 });
 
             modelBuilder.Entity("FirstApp.Data.Models.Discussion", b =>
@@ -97,7 +98,7 @@ namespace FirstApp.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Discussions");
+                    b.ToTable("Discussion");
                 });
 
             modelBuilder.Entity("FirstApp.Data.Models.FirstAppUser", b =>
@@ -192,7 +193,7 @@ namespace FirstApp.Data.Migrations
 
                     b.HasIndex("FirstAppUserId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Review");
                 });
 
             modelBuilder.Entity("FirstApp.Data.Models.Team", b =>
@@ -205,7 +206,7 @@ namespace FirstApp.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Teams");
+                    b.ToTable("Team");
                 });
 
             modelBuilder.Entity("FirstApp.Data.Models.Video", b =>
@@ -226,7 +227,7 @@ namespace FirstApp.Data.Migrations
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("Videos");
+                    b.ToTable("Video");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -364,8 +365,7 @@ namespace FirstApp.Data.Migrations
 
                     b.HasOne("FirstApp.Data.Models.FirstAppUser", "FirstAppUser")
                         .WithMany("Comments")
-                        .HasForeignKey("FirstAppUserId1")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("FirstAppUserId1");
                 });
 
             modelBuilder.Entity("FirstApp.Data.Models.Image", b =>

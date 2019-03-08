@@ -4,14 +4,16 @@ using FirstApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FirstApp.Data.Migrations
 {
     [DbContext(typeof(FirstAppContext))]
-    partial class FirstAppContextModelSnapshot : ModelSnapshot
+    [Migration("20190305162711_AddTeamEntity")]
+    partial class AddTeamEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
