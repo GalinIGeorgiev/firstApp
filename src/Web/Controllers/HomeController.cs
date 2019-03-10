@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FirstApp.Web.Models;
 using FirstApp.Services;
 using FirstApp.Services.Contracts;
 using FirstApp.Services.ViewModels.Home;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FirstApp.Web.Controllers
 {
@@ -26,6 +29,7 @@ namespace FirstApp.Web.Controllers
             return View(viewModel);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Privacy()
         {
             return View();

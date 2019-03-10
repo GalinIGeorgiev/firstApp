@@ -20,6 +20,7 @@ using FirstApp.Services.Contracts;
 using FirstApp.Data.Common;
 using FirstApp.Services.Mapping;
 using FirstApp.Services.ViewModels.Home;
+using FirstApp.Web.Middlewares;
 
 namespace FirstApp.Web
 {
@@ -51,17 +52,19 @@ namespace FirstApp.Web
                 options.UseSqlServer(
                     this.Configuration.GetConnectionString("FirstAppContextConnection")));
 
-            services.AddDefaultIdentity<FirstAppUser>(options =>
-                {
-                    options.Password.RequiredLength = 6;
-                    options.Password.RequireDigit = false;
-                    options.Password.RequireLowercase = false;
-                    options.Password.RequireUppercase = false;
-                    options.Password.RequireNonAlphanumeric = false;
-                    options.Password.RequiredUniqueChars = 0;
-                }
-                
+            services.AddIdentity<FirstAppUser, IdentityRole>(options =>
+                 {
+                     options.Password.RequiredLength = 6;
+                     options.Password.RequireDigit = false;
+                     options.Password.RequireLowercase = false;
+                     options.Password.RequireUppercase = false;
+                     options.Password.RequireNonAlphanumeric = false;
+                     options.Password.RequiredUniqueChars = 0;
+                 }
+
             )
+                .AddDefaultTokenProviders()
+                .AddDefaultUI()
                 .AddEntityFrameworkStores<FirstAppContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -69,7 +72,7 @@ namespace FirstApp.Web
             //Application Services
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
             services.AddScoped<IArticleService, ArticleService>();
-        
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -94,6 +97,8 @@ namespace FirstApp.Web
             app.UseAuthentication();
             app.UseStaticFiles();
 
+            app.UseSeedDataMiddleware();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -105,7 +110,7 @@ namespace FirstApp.Web
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            
+
 
         }
     }

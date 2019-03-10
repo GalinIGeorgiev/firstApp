@@ -15,6 +15,8 @@ namespace FirstApp.Data.Models
             this.Reviews = new HashSet<Review>();
         }
 
+        public string FirstName { get; set; }
+
         public string FavoriteSport { get; set; }
         public string FavoriteTeam { get; set; }
 
