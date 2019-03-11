@@ -39,6 +39,20 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="dropdown">
+                            <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin panel
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" asp-area="Administration" asp-controller="Articles" asp-action="Create">Create article</a>
+                                <a class="dropdown-item" href="#">Add Sport </a>
+                                <a class="dropdown-item" href="#">Add Team</a>
+                            </div>
+                        </div>
+                    }
+
                 </div>
             </div>
         </nav>
