@@ -59,16 +59,12 @@ body {
 }
 
 body {
+    background-color: darkred;
     background: darkred;
-}
-
-body {
     color: black;
 }
 
-body {
-    background-color: darkred;
-}
+
 
 /*navbar*/
 .navbar-custom {
@@ -80,10 +76,7 @@ body {
         color: red;
     }
 
-    /* change the link color */
-    /*.navbar-custom .navbar-nav .nav-link {
-        color: rgba(255,255,255,.5);
-    }*/
+
 
     /* change the color of active or hovered links */
     .navbar-custom .nav-item.active .nav-link,
@@ -111,7 +104,38 @@ body {
 }
 
 .card {
-    margin-bottom:5px;
+    margin-bottom: 5px;
 }
 
 
+
+.nav-pills .nav-link:visited {
+    color: white;
+    background: red;
+}
+
+.nav-pills .nav-link:hover {
+    color: black;
+    background: grey;
+}
+
+.btn-primary {
+    background: red;
+    border: black;
+}
+
+.img-thumbnail {
+    width: 200px;
+    height: 120px;
+}
+
+.img-fluid {
+    max-width: auto;
+    max-height: auto;
+}
+
+/*.video:empty {
+    height: 50px;
+    width: 50px;
+    display: none;
+}*/

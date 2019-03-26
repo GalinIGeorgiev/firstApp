@@ -84,7 +84,7 @@ namespace FirstApp.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Video",
+                name: "Videos",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -168,7 +168,7 @@ namespace FirstApp.Data.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Video_ArticleId",
-                table: "Video",
+                table: "Videos",
                 column: "ArticleId");
 
             migrationBuilder.AddForeignKey(
@@ -229,7 +229,7 @@ namespace FirstApp.Data.Migrations
                 name: "Team");
 
             migrationBuilder.DropTable(
-                name: "Video");
+                name: "Videos");
 
             migrationBuilder.DropTable(
                 name: "Discussion");

@@ -9,9 +9,9 @@ using FirstApp.Data;
 
 namespace FirstApp.Web.Controllers
 {
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
-       
+
     }
 }
 

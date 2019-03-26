@@ -13,8 +13,9 @@ namespace FirstApp.Data.Models
         public Article()
         {
             this.Reviews = new HashSet<Review>();
+            this.Comments = new HashSet<Comment>();
             this.Images = new HashSet<Image>();
-            this.Video = new HashSet<Video>();
+            this.Videos = new HashSet<Video>();
         }
         public string Content { get; set; }
 
@@ -22,7 +23,7 @@ namespace FirstApp.Data.Models
 
         public string Title { get; set; }
 
-        public decimal Rating =>  RatingCalculator(Reviews) ;
+        public decimal Rating => RatingCalculator(Reviews);
 
 
         public int CategoryId { get; set; }
@@ -35,12 +36,22 @@ namespace FirstApp.Data.Models
 
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<Image> Images { get; set; }
-        public virtual ICollection<Video> Video { get; set; }
+        public virtual ICollection<Video> Videos { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
 
         private decimal RatingCalculator(ICollection<Review> reviews)
         {
-            decimal rating = ((decimal)reviews.Sum(x => x.Raiting)) / reviews.Count;
+            decimal rating;
+            if (reviews.Count == 0)
+            {
+                rating = 0;
+            }
+            else
+            {
+                rating = ((decimal)reviews.Sum(x => x.Raiting)) / reviews.Count;
+            }
+
 
             return rating;
         }

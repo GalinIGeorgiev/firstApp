@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FirstApp.Web</title>
+    <title>@ViewData["Title"] - Champion Web Site</title>
+
     <link href="~/css/site.css" rel="stylesheet" />
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -46,9 +47,9 @@
                                 Admin panel
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Articles" asp-action="Create">Create article</a>
-                                <a class="dropdown-item" href="#">Add Sport </a>
-                                <a class="dropdown-item" href="#">Add Team</a>
+                                <a class="dropdown-item" asp-area="Administration" asp-controller="Articles" asp-action="Create">Create new article</a>
+                                <a class="dropdown-item" asp-area="Administration" asp-controller="Categories" asp-action="Create">Create new category</a>
+                                <a class="dropdown-item" asp-area="Administration" asp-controller="Teams" asp-action="Create">Create new team</a>
                             </div>
                         </div>
                     }
@@ -59,11 +60,16 @@
     </header>
 
 
-    <div class="container">
+    <div>
+
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
-            @RenderBody()
+            <div class="container">
+                @RenderBody()
+            </div>
+
         </main>
+        <hr />
     </div>
 
 

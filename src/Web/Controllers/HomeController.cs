@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace FirstApp.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public IArticleService ArticleService;
 
@@ -29,7 +29,7 @@ namespace FirstApp.Web.Controllers
             return View(viewModel);
         }
 
-        [Authorize(Roles = "Admin")]
+       
         public IActionResult Privacy()
         {
             return View();

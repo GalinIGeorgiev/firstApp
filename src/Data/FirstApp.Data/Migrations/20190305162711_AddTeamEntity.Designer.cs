@@ -210,7 +210,7 @@ namespace FirstApp.Data.Migrations
                     b.ToTable("Teams");
                 });
 
-            modelBuilder.Entity("FirstApp.Data.Models.Video", b =>
+            modelBuilder.Entity("FirstApp.Data.Models.Videos", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -389,10 +389,10 @@ namespace FirstApp.Data.Migrations
                         .HasForeignKey("FirstAppUserId");
                 });
 
-            modelBuilder.Entity("FirstApp.Data.Models.Video", b =>
+            modelBuilder.Entity("FirstApp.Data.Models.Videos", b =>
                 {
                     b.HasOne("FirstApp.Data.Models.Article", "Article")
-                        .WithMany("Video")
+                        .WithMany("Videos")
                         .HasForeignKey("ArticleId");
                 });
 

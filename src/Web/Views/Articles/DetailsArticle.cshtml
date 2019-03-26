@@ -1,0 +1,64 @@
+﻿@using FirstApp.Data.Models
+@model FirstApp.Services.ViewModels.Articles.DetailsArticleViewModel
+
+@{
+    ViewData["Title"] = "DetailsArticle";
+    var comment = new Comment {};
+}
+<div class="container-fluid col-md-8 ">
+    <div class="card text-white bg-dark text-center ">
+        <div>
+            <img src="@Model.ImageUrl" class="img-fluid">
+        </div>
+        <div>
+            <h4> @Html.DisplayFor(model => model.Title)</h4>
+        </div>
+        <hr />
+        <div>
+            @Model.Content
+        </div>
+        <hr />
+
+        <video controls>
+            <source src="@Model.VideoUrl" type="video/mp4">
+        </video>
+        <hr />
+
+        <div class="text-right">
+            @Model.CreatedOn
+        </div>
+
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="col-8">
+            <form asp-controller="Comments" asp-action="AddCommentArticle" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-primery"></div>
+                <div class="form-group">
+                    <label asp-for="Comments" class="control-label"></label>
+                    <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    
+                    <input asp-for="UserName" class="form-control" rows="5">
+                    <span asp-validation-for="Content" class="text-danger" va></span>
+                </div>
+                <div class="form-group text-center">
+                    <input type="submit" value="Create" class="btn btn-dark" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

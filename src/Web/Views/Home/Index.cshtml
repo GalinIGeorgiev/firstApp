@@ -5,25 +5,45 @@
     ViewData["Title"] = "Home Page";
 }
 
+
 <div class="text-center">
     <h1 class="display-4">Welcome to Champion Website</h1>
     <hr />
 </div>
 
-<div class="row justify-content-around">
-    @foreach (var article in Model.Articles)
-    {
 
-        <div class="card w-25 mr-md-2 text-white bg-dark">
+<div class="row">
+    <div class=" col-lg-3">
+        <div class="card ml-lg-1 text-white bg-dark">
             <div class="card-body">
-                <h5 class="card-title">@article.Category</h5>
-                <div class="justify-content-center"> <img src="@article.ImageUrl" width="256" height="128"> </div>
-                <p class="card-text">@article.Title</p>
+                <h5 class="card-title">ssss</h5>
+                <div>sss</div>
+                <p class="card-text">sss</p>
 
-                <h5 class="card-footer">@article.CreatedOn</h5>
+                <h5 class="card-footer">sssn</h5>
             </div>
         </div>
-    }
+    </div>
+    <div class="col-lg-9">
+        <div class="row">
+            @foreach (var article in Model.Articles)
+            {
+                <div class="col-4">
+                    <a asp-controller="Articles" asp-action="DetailsArticle" asp-route-id="@article.Id">
+                        <div class="card mr-md-1 text-white bg-dark">
+                            <div class="card-body">
+                                <h5 class="card-title">@article.Category - @article.Team</h5>
+                                <div class="text-center">
+                                    <img src="@article.ImageUrl" class="img-thumbnail">
+                                    <p class="card-text">@article.Title</p>
+                                    <h5 class="card-footer">@article.CreatedOn</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
 </div>
-
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -19,6 +20,7 @@ using FirstApp.Services;
 using FirstApp.Services.Contracts;
 using FirstApp.Data.Common;
 using FirstApp.Services.Mapping;
+using FirstApp.Services.ViewModels.Articles;
 using FirstApp.Services.ViewModels.Home;
 using FirstApp.Web.Middlewares;
 
@@ -37,7 +39,8 @@ namespace FirstApp.Web
         public void ConfigureServices(IServiceCollection services)
         {
             AutoMapperConfig.RegisterMappings(
-                typeof(ArticleViewModel).Assembly
+                typeof(ArticleViewModel).Assembly,
+                typeof(Article).Assembly
 
                 );
 
@@ -72,6 +75,11 @@ namespace FirstApp.Web
             //Application Services
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
             services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ITeamService, TeamService>();
+            services.AddScoped<IImageService, ImageService>();
+            services.AddScoped<IVideoService, VideoService>();
+
 
         }
 
@@ -109,9 +117,6 @@ namespace FirstApp.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
-
-
         }
     }
 }

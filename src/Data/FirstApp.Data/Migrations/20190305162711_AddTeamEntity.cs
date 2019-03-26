@@ -32,11 +32,11 @@ namespace FirstApp.Data.Migrations
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Video_Articles_ArticleId",
-                table: "Video");
+                table: "Videos");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_Video",
-                table: "Video");
+                table: "Videos");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_Team",
@@ -55,7 +55,7 @@ namespace FirstApp.Data.Migrations
                 table: "Comment");
 
             migrationBuilder.RenameTable(
-                name: "Video",
+                name: "Videos",
                 newName: "Videos");
 
             migrationBuilder.RenameTable(
@@ -245,7 +245,7 @@ namespace FirstApp.Data.Migrations
 
             migrationBuilder.RenameTable(
                 name: "Videos",
-                newName: "Video");
+                newName: "Videos");
 
             migrationBuilder.RenameTable(
                 name: "Teams",
@@ -265,7 +265,7 @@ namespace FirstApp.Data.Migrations
 
             migrationBuilder.RenameIndex(
                 name: "IX_Videos_ArticleId",
-                table: "Video",
+                table: "Videos",
                 newName: "IX_Video_ArticleId");
 
             migrationBuilder.RenameIndex(
@@ -301,7 +301,7 @@ namespace FirstApp.Data.Migrations
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Video",
-                table: "Video",
+                table: "Videos",
                 column: "Id");
 
             migrationBuilder.AddPrimaryKey(
@@ -374,7 +374,7 @@ namespace FirstApp.Data.Migrations
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Video_Articles_ArticleId",
-                table: "Video",
+                table: "Videos",
                 column: "ArticleId",
                 principalTable: "Articles",
                 principalColumn: "Id",
