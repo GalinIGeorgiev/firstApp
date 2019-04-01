@@ -29,6 +29,8 @@ namespace FirstApp.Services.ViewModels.Articles
         public string ImageUrl { get; set; }
         public string VideoUrl { get; set; }
 
+        public string CurrentCommentContent { get; set; }
+
         public ICollection<Comment> Comments { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression configuration)

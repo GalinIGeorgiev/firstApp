@@ -38,11 +38,18 @@ namespace FirstApp.Services
 
         public DetailsArticleViewModel DetailsArticle(int Id)
         {
-            var article = db.Articles.Where(x => x.Id == Id).Include(x=>x.Team).Include(x=>x.Category)
-                .Include(x=>x.Images).Include(x=>x.Videos).FirstOrDefault();
+            var article = db.Articles.Where(x => x.Id == Id).Include(x => x.Team).Include(x => x.Category)
+                .Include(x => x.Images).Include(x => x.Videos).Include(x=>x.Comments).ThenInclude(x=>x.FirstAppUser).FirstOrDefault();
 
             var model = Mapper.Map<DetailsArticleViewModel>(article);
             return model;
+        }
+
+        public Article GiveArticleById(int id)
+        {
+            var article = db.Articles.Where(x => x.Id == id).FirstOrDefault();
+
+            return article;
         }
 
         public IEnumerable<ArticleViewModel> GiveRandomArticles()
@@ -89,7 +96,5 @@ namespace FirstApp.Services
 
             this.db.SaveChanges();
         }
-
-
     }
 }

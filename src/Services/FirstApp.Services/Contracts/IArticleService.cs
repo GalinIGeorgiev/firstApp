@@ -17,5 +17,7 @@ namespace FirstApp.Services.Contracts
         void AddImageUrls(int id, IEnumerable<string> imageUrls);
 
         void AddVideoUrls(int id, IEnumerable<string> videoUrls);
+
+        Article GiveArticleById(int id);
     }
 }

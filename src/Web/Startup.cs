@@ -79,6 +79,7 @@ namespace FirstApp.Web
             services.AddScoped<ITeamService, TeamService>();
             services.AddScoped<IImageService, ImageService>();
             services.AddScoped<IVideoService, VideoService>();
+            services.AddScoped<ICommentService, CommentService>();
 
 
         }
