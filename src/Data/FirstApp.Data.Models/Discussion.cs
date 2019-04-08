@@ -5,11 +5,11 @@ using FirstApp.Data.Common;
 
 namespace FirstApp.Data.Models
 {
-    public class Discussion:BaseModel<int>
+    public class Discussion : BaseModel<int>
     {
         public Discussion()
         {
-                this.Comments= new HashSet<Comment>();
+            this.Comments = new HashSet<Comment>();
         }
         public string Title { get; set; }
 

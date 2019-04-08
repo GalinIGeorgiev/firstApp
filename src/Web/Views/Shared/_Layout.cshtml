@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Champion Web Site</title>
-
     <link href="~/css/site.css" rel="stylesheet" />
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -17,9 +16,7 @@
               crossorigin="anonymous"
               integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
     </environment>
-
 </head>
-
 
 <body>
     <header>
@@ -33,12 +30,19 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
+
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="Administration" asp-controller="Discussions" asp-action="Create">Дискусии</a>
+                            </li>
+                        }
                     </ul>
                     @if (User.IsInRole("Admin"))
                     {
@@ -54,25 +58,21 @@
                         </div>
                     }
 
+
                 </div>
             </div>
         </nav>
     </header>
 
-
     <div>
-
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             <div class="container">
                 @RenderBody()
             </div>
-
         </main>
         <hr />
     </div>
-
-
 
 
     <footer class="border-top footer text-muted">
@@ -101,7 +101,6 @@
         </script>
     </environment>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>

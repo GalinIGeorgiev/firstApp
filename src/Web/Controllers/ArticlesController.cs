@@ -34,13 +34,14 @@ namespace FirstApp.Web.Controllers
             
             CommentService.AddCommentToArticle(user, commentText, articleId);
 
-            return View(nameof(DetailsArticle), model.Id);
+            return RedirectToAction(nameof(DetailsArticle), new {  id=articleId });
         }
 
 
         public IActionResult DetailsArticle(int id)
         {
             var model = ArticleService.DetailsArticle(id);
+
             return View(model);
         }
     }

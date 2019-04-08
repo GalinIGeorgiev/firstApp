@@ -39,7 +39,7 @@ namespace FirstApp.Services.ViewModels.Articles
                 .ForMember(x => x.Team, y => y.MapFrom(x => x.Team.Name))
                 .ForMember(x => x.ImageUrl, y => y.MapFrom(x => x.Images.FirstOrDefault().ImageUrl))
                 .ForMember(x => x.VideoUrl, y => y.MapFrom(x => x.Videos.FirstOrDefault().VideoUrl))
-                .ForMember(x => x.VideoUrl, y => y.MapFrom(x => x.Comments));
+                .ForMember(x => x.Comments, y => y.MapFrom(x => x.Comments));
         }
     }
 }

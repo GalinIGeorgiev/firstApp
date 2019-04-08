@@ -6,7 +6,7 @@ using System.Text;
 using FirstApp.Data;
 using FirstApp.Data.Models;
 using FirstApp.Services.Contracts;
-using FirstApp.Services.ViewModels.Categories;
+using FirstApp.Services.ViewModels.Category;
 using FirstApp.Services.ViewModels.Team;
 
 namespace FirstApp.Services

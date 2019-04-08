@@ -1,6 +1,6 @@
 ﻿
 using FirstApp.Services.Contracts;
-using FirstApp.Services.ViewModels.Categories;
+using FirstApp.Services.ViewModels.Category;
 using FirstApp.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;

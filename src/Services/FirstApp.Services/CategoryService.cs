@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
+using AutoMapper;
 using FirstApp.Data;
 using FirstApp.Data.Models;
 using FirstApp.Services.Contracts;
-using FirstApp.Services.ViewModels.Categories;
+using FirstApp.Services.ViewModels.Category;
 
 namespace FirstApp.Services
 {
@@ -23,6 +24,7 @@ namespace FirstApp.Services
 
         public void CreateCategory(CreateCategoryViewModel model)
         {
+            //var c = Mapper.Map<Category>(model);
             var category = new Category()
             {
                 Name = model.Name

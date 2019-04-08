@@ -1,11 +1,8 @@
 ﻿@using FirstApp.Data.Models
 @model FirstApp.Services.ViewModels.Articles.DetailsArticleViewModel
-
 @{
     ViewData["Title"] = "DetailsArticle";
 }
-
-
 
 <div class="container-fluid col-md-8 ">
     <div class="card text-white bg-dark text-center ">
@@ -20,30 +17,31 @@
             @Model.Content
         </div>
         <hr />
-
-        <video controls>
+        <video controls="controls">
             <source src="@Model.VideoUrl" type="video/mp4">
         </video>
         <hr />
-
         <div class="text-right">
             @Model.CreatedOn
         </div>
-
     </div>
+
     @foreach (var comment in Model.Comments)
     {
-        <div class="card mr-md-1 text-white bg-dark">
-            <div class="card-body">
-                <h5 class="card-title">@comment.FirstAppUser.FirstName</h5>
-                <div class="text-center">
-                    
-                    <p class="card-text">@comment.Content</p>
-                    <h5 class="card-footer">@comment.CreatedOn</h5>
+        <div class="row justify-content-center">
+            <div class="card w-75 mr-md-1 text-white bg-dark ">
+                <div class="card-body">
+                    <h5 class="card-title">@comment.FirstAppUser.FirstName</h5>
+                    <div class="text-center">
+
+                        <p class="card-text">@comment.Content</p>
+                        <h5 class="card-footer">@comment.CreatedOn</h5>
+                    </div>
                 </div>
             </div>
         </div>
     }
+
     <div class="d-flex justify-content-center">
         <div class="col-8">
             <form asp-controller="Articles" asp-action="AddComment" method="post" enctype="multipart/form-data">
@@ -56,7 +54,6 @@
                 <div class="form-group">
                     <input asp-for="Id" type="hidden" value="@Model.Id">
                 </div>
-
                 <div class="form-group text-center">
                     <input type="submit" value="Create" class="btn btn-dark" />
                 </div>
@@ -64,6 +61,7 @@
         </div>
     </div>
 </div>
+
 
 
 

@@ -43,7 +43,8 @@ namespace FirstApp.Services.ViewModels.Articles
             configuration.CreateMap<CreateArticleViewModel, Article>()
                 .ForMember(x => x.Category, x => x.Ignore())
                 .ForMember(x => x.Team, x => x.Ignore())
-                .ForMember(x => x.Images, x => x.Ignore());
+                .ForMember(x => x.Images, x => x.Ignore())
+                .ForMember(x => x.Videos, x => x.Ignore());
 
         }
     }

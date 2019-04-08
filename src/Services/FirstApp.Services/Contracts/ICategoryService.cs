@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using FirstApp.Services.ViewModels.Categories;
+using FirstApp.Services.ViewModels.Category;
 using FirstApp.Services.ViewModels.Home;
 
 namespace FirstApp.Services.Contracts
