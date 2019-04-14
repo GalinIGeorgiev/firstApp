@@ -2,6 +2,7 @@
 using FirstApp.Data;
 using FirstApp.Data.Models;
 using FirstApp.Services.Contracts;
+using FirstApp.Services.Mapping;
 using FirstApp.Services.ViewModels.Discussion;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,10 @@ namespace FirstApp.Services
         {
             this.Db = db;
         }
-        public ICollection<Discussion> AllDiscussions()
+        public IndexDiscussionsViewModel AllDiscussions()
         {
-            var discussions = Db.Discussions.ToList();
+            IndexDiscussionsViewModel discussions = new IndexDiscussionsViewModel() ;
+            discussions.discussionViewModels =Db.Discussions.To<DiscussionViewModel>().ToList();
 
             return discussions;
         }
@@ -32,5 +34,6 @@ namespace FirstApp.Services
 
         }
 
+       
     }
 }

@@ -134,8 +134,7 @@ body {
     max-height: auto;
 }
 
-/*.video:empty {
-    height: 50px;
-    width: 50px;
+video {
+    
     display: none;
-}*/
+}

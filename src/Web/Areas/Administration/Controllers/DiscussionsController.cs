@@ -19,7 +19,7 @@ namespace FirstApp.Web.Areas.Administration.Controllers
         }
         public IActionResult Index(IndexDiscussionsViewModel model)
         {
-             model.discussionViewModels = DiscussionService.AllDiscussions();
+             model = DiscussionService.AllDiscussions();
 
             return View(model);
         }
@@ -33,7 +33,7 @@ namespace FirstApp.Web.Areas.Administration.Controllers
         [HttpPost]
         public IActionResult Create(CreateDiscussionViewModel model)
         {
-
+            DiscussionService.CreateDiscussion(model);
 
             return View(nameof(Index));
         }

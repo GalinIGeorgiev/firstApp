@@ -1,0 +1,12 @@
+﻿@model FirstApp.Services.ViewModels.Discussion.IndexDiscussionsViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@foreach (var discussion in Model.discussionViewModels)
+{
+    <a asp-controller="Discussions" asp-action="Details"> </a><h1>@discussion.Title </h1>
+}
+
