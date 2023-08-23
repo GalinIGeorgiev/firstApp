@@ -23,6 +23,7 @@ using FirstApp.Services.Mapping;
 using FirstApp.Services.ViewModels.Articles;
 using FirstApp.Services.ViewModels.Home;
 using FirstApp.Web.Middlewares;
+using Microsoft.AspNetCore.Authentication.Facebook;
 
 namespace FirstApp.Web
 {
@@ -41,7 +42,6 @@ namespace FirstApp.Web
             AutoMapperConfig.RegisterMappings(
                 typeof(ArticleViewModel).Assembly,
                 typeof(Article).Assembly
-
                 );
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -63,6 +63,7 @@ namespace FirstApp.Web
                      options.Password.RequireUppercase = false;
                      options.Password.RequireNonAlphanumeric = false;
                      options.Password.RequiredUniqueChars = 0;
+                     
                  }
 
             )
@@ -71,6 +72,15 @@ namespace FirstApp.Web
                 .AddEntityFrameworkStores<FirstAppContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            //facebook authentication
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+
+            });
+
 
             //Application Services
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
@@ -81,8 +91,7 @@ namespace FirstApp.Web
             services.AddScoped<IVideoService, VideoService>();
             services.AddScoped<ICommentService, CommentService>();
             services.AddScoped<IDiscussionService, DiscussionService>();
-            
-
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -110,7 +119,7 @@ namespace FirstApp.Web
             app.UseSeedDataMiddleware();
 
             app.UseMvc(routes =>
-            {
+            {               
                 routes.MapRoute(
                     name: "areas",
                     template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
