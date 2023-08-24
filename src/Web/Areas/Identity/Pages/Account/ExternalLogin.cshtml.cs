@@ -45,6 +45,11 @@ namespace FirstApp.Web.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+
+            [MinLength(3)]
+            [MaxLength(30)]
+            [Required]
+            public string UserName { get; set; }
         }
 
         public IActionResult OnGetAsync()
@@ -80,6 +85,7 @@ namespace FirstApp.Web.Areas.Identity.Pages.Account
             if (result.Succeeded)
             {
                 _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
+
                 return LocalRedirect(returnUrl);
             }
             if (result.IsLockedOut)
@@ -96,7 +102,14 @@ namespace FirstApp.Web.Areas.Identity.Pages.Account
                     Input = new InputModel
                     {
                         Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                        
                     };
+                }
+                if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Name))
+                {
+
+                    Input.UserName = info.Principal.FindFirstValue(ClaimTypes.GivenName);
+
                 }
                 return Page();
             }
@@ -115,7 +128,7 @@ namespace FirstApp.Web.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new FirstAppUser { UserName = Input.Email, Email = Input.Email };
+                var user = new FirstAppUser { UserName = Input.Email, FirstName = Input.UserName , Email = Input.Email };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
