@@ -6,6 +6,7 @@ using FirstApp.Services;
 using FirstApp.Services.Contracts;
 using FirstApp.Services.ViewModels.Discussion;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite.Internal;
 
 namespace FirstApp.Web.Areas.Administration.Controllers
 {
@@ -17,25 +18,40 @@ namespace FirstApp.Web.Areas.Administration.Controllers
         {
             DiscussionService = discussionService;
         }
-        public IActionResult Index(IndexDiscussionsViewModel model)
+
+
+        public IActionResult Index(List<DiscussionViewModel> model)
         {
-             model.discussionViewModels = DiscussionService.AllDiscussions();
+            model = DiscussionService.AllDiscussions().ToList();
 
             return View(model);
         }
 
         public IActionResult Create()
-        {
-            
+        {           
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(CreateDiscussionViewModel model)
+        public IActionResult Create(DiscussionViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
 
 
-            return View(nameof(Index));
+            DiscussionService.CreateDiscussion(model);
+
+            return RedirectToAction(nameof(Index));   
         }
+
+        // TODO
+        //public IActionResult Details(int id)
+        //{
+        //    DiscussionViewModel discussionViewModel = DiscussionService.DetailsDiscussion(id);
+
+        //    return View(discussionViewModel);
+        //}
     }
 }
