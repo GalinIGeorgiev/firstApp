@@ -9,7 +9,7 @@ namespace FirstApp.Data.Models
     {
         public string Content { get; set; }
 
-        public string CreatedOn { get; set; } = DateTime.UtcNow.ToString();
+        public string CreatedOn { get; set; } = DateTime.UtcNow.AddHours(3).ToString();
 
         public int FirstAppUserId { get; set; }
         public FirstAppUser FirstAppUser { get; set; }

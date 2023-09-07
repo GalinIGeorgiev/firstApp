@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
 namespace FirstApp.Data.Models
@@ -14,7 +12,8 @@ namespace FirstApp.Data.Models
             this.Comments = new HashSet<Comment>();
             this.Reviews = new HashSet<Review>();
         }
-
+        [MaxLength(20)]
+        [MinLength(2)]
         public string FirstName { get; set; }
 
         public string FavoriteSport { get; set; }

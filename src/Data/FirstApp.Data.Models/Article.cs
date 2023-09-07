@@ -30,7 +30,7 @@ namespace FirstApp.Data.Models
 
         public virtual Category Category { get; set; }
 
-        public int TeamId { get; set; }
+        public int? TeamId { get; set; }
 
         public virtual Team Team { get; set; }
 
