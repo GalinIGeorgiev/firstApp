@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using FirstApp.Data.Models;
 using FirstApp.Services.Mapping;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace FirstApp.Services.ViewModels.Articles

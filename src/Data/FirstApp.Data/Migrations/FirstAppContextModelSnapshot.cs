@@ -31,7 +31,7 @@ namespace FirstApp.Data.Migrations
 
                     b.Property<string>("CreatedOn");
 
-                    b.Property<int>("TeamId");
+                    b.Property<int?>("TeamId");
 
                     b.Property<string>("Title");
 
@@ -93,6 +93,8 @@ namespace FirstApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("LastActivity");
+
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
@@ -119,7 +121,8 @@ namespace FirstApp.Data.Migrations
 
                     b.Property<string>("FavoriteTeam");
 
-                    b.Property<string>("FirstName");
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(20);
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -210,7 +213,7 @@ namespace FirstApp.Data.Migrations
                     b.ToTable("Teams");
                 });
 
-            modelBuilder.Entity("FirstApp.Data.Models.Videos", b =>
+            modelBuilder.Entity("FirstApp.Data.Models.Video", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -350,14 +353,13 @@ namespace FirstApp.Data.Migrations
 
                     b.HasOne("FirstApp.Data.Models.Team", "Team")
                         .WithMany()
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("TeamId");
                 });
 
             modelBuilder.Entity("FirstApp.Data.Models.Comment", b =>
                 {
                     b.HasOne("FirstApp.Data.Models.Article", "Article")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("ArticleId");
 
                     b.HasOne("FirstApp.Data.Models.Discussion", "Discussion")
@@ -389,7 +391,7 @@ namespace FirstApp.Data.Migrations
                         .HasForeignKey("FirstAppUserId");
                 });
 
-            modelBuilder.Entity("FirstApp.Data.Models.Videos", b =>
+            modelBuilder.Entity("FirstApp.Data.Models.Video", b =>
                 {
                     b.HasOne("FirstApp.Data.Models.Article", "Article")
                         .WithMany("Videos")
