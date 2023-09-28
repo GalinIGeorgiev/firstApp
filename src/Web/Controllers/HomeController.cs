@@ -24,7 +24,7 @@ namespace FirstApp.Web.Controllers
         }
         public IActionResult Index(IndexArticleViewModel viewModel)
         {
-             viewModel.Articles = ArticleService.GiveRandomArticles().Take(10).ToList();
+             viewModel.Articles = ArticleService.GiveRandomArticles().ToList();
                
             return View(viewModel);
         }

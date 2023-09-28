@@ -24,6 +24,7 @@ namespace FirstApp.Services
 
         public void CreateCategory(CreateCategoryViewModel model)
         {
+            // TODO
             //var c = Mapper.Map<Category>(model);
             var category = new Category()
             {

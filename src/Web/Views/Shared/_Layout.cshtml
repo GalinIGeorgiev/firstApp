@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Champion Web Site</title>
     <link href="~/css/site.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/c9197a051f.js" crossorigin="anonymous"></script>
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
@@ -40,20 +41,21 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="Administration" asp-controller="Discussions" asp-action="Create">Дискусии</a>
+                                <a class="nav-link text-white"  asp-controller="Discussions" asp-action="Index">Discussions</a>
                             </li>
                         }
                     </ul>
                     @if (User.IsInRole("Admin"))
                     {
                         <div class="dropdown">
-                            <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Admin panel
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Articles" asp-action="Create">Create new article</a>
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Categories" asp-action="Create">Create new category</a>
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Teams" asp-action="Create">Create new team</a>
+                                <a class="dropdown-item" asp-area="Administration" asp-controller="Articles" asp-action="Create">Create a new article</a>
+                                <a class="dropdown-item" asp-area="Administration" asp-controller="Categories" asp-action="Create">Create a new category</a>
+                                <a class="dropdown-item" asp-area="Administration" asp-controller="Teams" asp-action="Create">Create a new team</a>
+                                <a class="dropdown-item" asp-area="Administration" asp-controller="Discussions" asp-action="Create">Create a new Discussions</a>
                             </div>
                         </div>
                     }
@@ -75,9 +77,9 @@
     </div>
 
 
-    <footer class="border-top footer text-muted">
+    <footer class=" footer text-muted">
         <div class="container text-center">
-            &copy; 2019 - FirstApp.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - Champion.com - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <link rel="stylesheet" href="~/css/site.css" />

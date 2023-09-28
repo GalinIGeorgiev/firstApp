@@ -19,8 +19,8 @@ namespace FirstApp.Web.Controllers
 
         public ArticlesController(IArticleService articleService, ICommentService commentService, UserManager<FirstAppUser> userManager)
         {
-            ArticleService = articleService;
-            CommentService = commentService;
+            this.ArticleService = articleService;
+            this.CommentService = commentService;
             this.UserManager = userManager;
         }
 
@@ -30,8 +30,7 @@ namespace FirstApp.Web.Controllers
             var articleId = model.Id;
          
             var commentText = model.CurrentCommentContent;
-
-            
+        
             CommentService.AddCommentToArticle(user, commentText, articleId);
 
             return RedirectToAction(nameof(DetailsArticle), new {  id=articleId });

@@ -40,6 +40,11 @@ namespace FirstApp.Web.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            
+           [Required]
+           [Display(Name = "First name")]
+            public string FirstName { get; set; }
+
             [Required]
             [EmailAddress]
             public string Email { get; set; }
@@ -51,22 +56,25 @@ namespace FirstApp.Web.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnGetAsync()
         {
+
             var user = await _userManager.GetUserAsync(User);
+             
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            var userName = await _userManager.GetUserNameAsync(user);
+            
+            var firstName =  user.FirstName;
             var email = await _userManager.GetEmailAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
-            Username = userName;
-
+            
             Input = new InputModel
             {
                 Email = email,
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                FirstName = firstName
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
@@ -85,6 +93,19 @@ namespace FirstApp.Web.Areas.Identity.Pages.Account.Manage
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+                       
+            if (Input.FirstName != user.FirstName)
+            {
+                
+                // TODO Set FirstName of user . Better solution ?
+               user.FirstName=  (_userManager.Users.FirstOrDefault(x => x.Id == user.Id).FirstName = Input.FirstName);               
+
+                if (user.FirstName != Input.FirstName)
+                {
+                    var userId = await _userManager.GetUserIdAsync(user);
+                    throw new InvalidOperationException($"Unexpected error occurred setting username for user with ID '{userId}'.");
+                }
             }
 
             var email = await _userManager.GetEmailAsync(user);

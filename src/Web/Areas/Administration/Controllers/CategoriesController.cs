@@ -1,5 +1,4 @@
-﻿
-using FirstApp.Services.Contracts;
+﻿using FirstApp.Services.Contracts;
 using FirstApp.Services.ViewModels.Category;
 using FirstApp.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;

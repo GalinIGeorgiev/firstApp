@@ -39,7 +39,7 @@ namespace FirstApp.Web.Areas.Administration.Controllers
             return View();
         }
 
-
+        // TODO
         //[HttpPost]
         //public async Task<IActionResult> Create(CreateArticleViewModel model)
         //{

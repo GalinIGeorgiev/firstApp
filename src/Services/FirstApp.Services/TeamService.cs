@@ -23,6 +23,7 @@ namespace FirstApp.Services
         
         public void CreateTeam(CreateTeamViewModel model)
         {
+            // TODO mapper
             var team = new Team()
             {
                 Name = model.Name

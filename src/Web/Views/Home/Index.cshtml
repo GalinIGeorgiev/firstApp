@@ -12,8 +12,8 @@
 </div>
 
 
-<div class="row">
-    <div class=" col-lg-3 ">
+<div class="row justify-content-center">
+    <div class="col-lg-3">
         <div class="card h-100 ml-lg-1 text-white bg-dark">
             <div class="card-body">
                 <h5 class="card-title">Future content</h5>
@@ -35,8 +35,9 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-9">
-        <div class="row">
+
+    <div class="col-lg-9 row">
+        
             @foreach (var article in Model.Articles)
             {
 
@@ -48,24 +49,8 @@
                         </div>
                     </a>
                 </div>
-
-                @*<div class="col-4">
-                        <a asp-controller="Articles" asp-action="DetailsArticle" asp-route-id="@article.Id">
-                            <div class="card mr-md-1 ">
-                                <div class="card-thumbnail text-white bg-dark">
-                                <img src="@article.ImageUrl" class="img-thumbnail">
-                                <p class="text-center">@article.Category - @article.Team</p>
-
-                                    <h5 class="card-text">@article.Title</h5>
-                                    <h5 class="card-footer">@article.CreatedOn</h5>
-
-                                </div>
-                            </div>
-
-                    </div>*@
-
             }
-        </div>
+        
     </div>
 </div>
 
