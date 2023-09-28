@@ -28,7 +28,7 @@ namespace FirstApp.Services.ViewModels.Home
                 .ForMember(x => x.Category, x => x.MapFrom(y => y.Category.Name))
                 .ForMember(x => x.ImageUrl, x => x.MapFrom(y => y.Images.FirstOrDefault().ImageUrl ?? "Images/defaultPic.png"))
                 .ForMember(x => x.Category, x => x.MapFrom(y => y.Category.Name))
-                .ForMember(x=>x.Team,x=>x.MapFrom(y=>y.Team.Name));
+                .ForMember(x=> x.Team, x => x.MapFrom(y => y.Team.Name));
         }
     }
 

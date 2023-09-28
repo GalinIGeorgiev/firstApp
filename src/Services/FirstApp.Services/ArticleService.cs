@@ -42,6 +42,12 @@ namespace FirstApp.Services
                 .Include(x => x.Images).Include(x => x.Videos).Include(x=>x.Comments).ThenInclude(x=>x.FirstAppUser).FirstOrDefault();
 
             var model = Mapper.Map<DetailsArticleViewModel>(article);
+
+            // TODO no articles without img
+            if (model.ImageUrl == null)
+            {
+                model.ImageUrl= "\\Images\\defaultPic.png";
+            }
             return model;
         }
 
@@ -54,7 +60,7 @@ namespace FirstApp.Services
 
         public IEnumerable<ArticleViewModel> GiveRandomArticles()
         {
-            var articles = db.Articles.Include(x => x.Category).OrderBy(x => Guid.NewGuid()).To<ArticleViewModel>().ToList();
+            var articles = db.Articles.Include(x => x.Category).OrderBy(x => Guid.NewGuid()).To<ArticleViewModel>().Take(12).ToList();
 
             return articles;
         }
