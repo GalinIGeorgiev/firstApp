@@ -11,17 +11,19 @@ namespace FirstApp.Services
     {
         private readonly FirstAppContext Db;
         private readonly IArticleService ArticleService;
+        private readonly IDiscussionService DiscussionService;
 
-        public CommentService(FirstAppContext db, IArticleService articleService)
+        public CommentService(FirstAppContext db, IArticleService articleService, IDiscussionService discussionService)
         {
             this.Db = db;
             this.ArticleService = articleService;
+            this.DiscussionService = discussionService;
         }
         public int AddCommentToArticle(FirstAppUser user, string commentText, int articleId)
         {
             var comment = new Comment();
 
-            comment.FirstAppUser = user;
+            comment.FirstAppUser = user;    
             comment.Content = commentText;
             comment.ArticleId = articleId;
             var article = ArticleService.GiveArticleById(articleId);
@@ -31,6 +33,23 @@ namespace FirstApp.Services
 
             Db.SaveChanges();
             return articleId;
+        }
+
+        public int AddCommentToDiscussion(FirstAppUser user, string commentText, int discussionId)
+        {
+            // TODO
+            var comment = new Comment();
+
+            comment.FirstAppUser = user;
+            comment.Content = commentText;
+            comment.DiscussionId = discussionId;
+            var discussion = DiscussionService.GiveDiscussionById(discussionId);
+
+            Db.Comments.Add(comment);
+            discussion.AddComment(comment);
+
+            Db.SaveChanges();
+            return discussionId;
         }
     }
 }
