@@ -39,10 +39,16 @@ namespace FirstApp.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc(
+                options =>
+                {
+                    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                }); 
+
             AutoMapperConfig.RegisterMappings(
                 typeof(ArticleViewModel).Assembly,
                 typeof(Article).Assembly
-                );
+            );
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -51,84 +57,84 @@ namespace FirstApp.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<FirstAppContext>(options =>
-                options.UseSqlServer(
-                    this.Configuration.GetConnectionString("FirstAppContextConnection")));
+                    services.AddDbContext<FirstAppContext>(options =>
+                        options.UseSqlServer(
+                            this.Configuration.GetConnectionString("FirstAppContextConnection")));
 
-            services.AddIdentity<FirstAppUser, IdentityRole>(options =>
-                 {
-                     options.Password.RequiredLength = 6;
-                     options.Password.RequireDigit = false;
-                     options.Password.RequireLowercase = false;
-                     options.Password.RequireUppercase = false;
-                     options.Password.RequireNonAlphanumeric = false;
-                     options.Password.RequiredUniqueChars = 0;
-                     
-                 }
+                    services.AddIdentity<FirstAppUser, IdentityRole>(options =>
+                         {
+                             options.Password.RequiredLength = 6;
+                             options.Password.RequireDigit = false;
+                             options.Password.RequireLowercase = false;
+                             options.Password.RequireUppercase = false;
+                             options.Password.RequireNonAlphanumeric = false;
+                             options.Password.RequiredUniqueChars = 0;
 
-            )
-                .AddDefaultTokenProviders()
-                .AddDefaultUI()
-                .AddEntityFrameworkStores<FirstAppContext>();
+                         }
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                    )
+                        .AddDefaultTokenProviders()
+                        .AddDefaultUI()
+                        .AddEntityFrameworkStores<FirstAppContext>();
 
-            //facebook authentication
-            services.AddAuthentication().AddFacebook(facebookOptions =>
-            {
-                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
-                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                    services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            });
+                    //facebook authentication
+                    services.AddAuthentication().AddFacebook(facebookOptions =>
+                    {
+                        facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                        facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+
+                    });
 
 
-            //Application Services
-            services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
-            services.AddScoped<IArticleService, ArticleService>();
-            services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<ITeamService, TeamService>();
-            services.AddScoped<IImageService, ImageService>();
-            services.AddScoped<IVideoService, VideoService>();
-            services.AddScoped<ICommentService, CommentService>();
-            services.AddScoped<IDiscussionService, DiscussionService>();
-           
-        }
+                    //Application Services
+                    services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
+                    services.AddScoped<IArticleService, ArticleService>();
+                    services.AddScoped<ICategoryService, CategoryService>();
+                    services.AddScoped<ITeamService, TeamService>();
+                    services.AddScoped<IImageService, ImageService>();
+                    services.AddScoped<IVideoService, VideoService>();
+                    services.AddScoped<ICommentService, CommentService>();
+                    services.AddScoped<IDiscussionService, DiscussionService>();
+
+                }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
+            public void Configure(IApplicationBuilder app, IHostingEnvironment env)
             {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                if (env.IsDevelopment())
+                {
+                    app.UseDeveloperExceptionPage();
+                    app.UseDatabaseErrorPage();
+                }
+                else
+                {
+                    app.UseExceptionHandler("/Home/Error");
+                    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                    app.UseHsts();
+                }
+
+                app.UseHttpsRedirection();
+                app.UseStaticFiles();
+                app.UseCookiePolicy();
+
+                app.UseAuthentication();
+                app.UseStaticFiles();
+
+                app.UseSeedDataMiddleware();
+
+                app.UseMvc(routes =>
+                {
+                    routes.MapRoute(
+                        name: "areas",
+                        template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                    routes.MapRoute(
+                        name: "default",
+                        template: "{controller=Home}/{action=Index}/{id?}");
+                });
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseCookiePolicy();
-
-            app.UseAuthentication();
-            app.UseStaticFiles();
-
-            app.UseSeedDataMiddleware();
-
-            app.UseMvc(routes =>
-            {               
-                routes.MapRoute(
-                    name: "areas",
-                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
         }
     }
-}
 
