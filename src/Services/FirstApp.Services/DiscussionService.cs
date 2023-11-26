@@ -5,6 +5,7 @@ using FirstApp.Services.Contracts;
 using FirstApp.Services.ViewModels.Discussion;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.EntityFrameworkCore;
 
 namespace FirstApp.Services
@@ -16,22 +17,35 @@ namespace FirstApp.Services
         {
             this.Db = db;
         }
-        public ICollection<DiscussionViewModel> AllDiscussions()
+
+        public IEnumerable<DiscussionViewModel> AllDiscussions()
         {
             var discussions = Db.Discussions.ToList();
 
-            var discussionViewModels = Mapper.Map<ICollection<DiscussionViewModel>>(discussions);
+            var discussionViewModels = Mapper.Map<IEnumerable<DiscussionViewModel>>(discussions).OrderByDescending(x => x.LastActivity);
 
             return discussionViewModels;
         }
 
         public void CreateDiscussion(DiscussionViewModel model)
-        {           
+        {                    
             var discussion = Mapper.Map<Discussion>(model);
 
             Db.Discussions.Add(discussion);
             Db.SaveChanges();
         }
+
+
+        public void DeleteDiscussion(int id)
+        {
+            var disscussion = GiveDiscussionById(id);
+
+            disscussion.Comments.Clear();
+
+            Db.Discussions.Remove(disscussion);
+            Db.SaveChanges();
+        }
+
 
         public DiscussionViewModel DetailsDiscussion(int Id)
         {
@@ -44,7 +58,7 @@ namespace FirstApp.Services
 
         public Discussion GiveDiscussionById(int id)
         {
-            var discussion = Db.Discussions.Where(x => x.Id == id).FirstOrDefault();
+            var discussion = Db.Discussions.Include(c=> c.Comments).Where(x => x.Id == id).FirstOrDefault();
 
             return discussion;
         }

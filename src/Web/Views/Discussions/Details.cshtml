@@ -1,0 +1,95 @@
+﻿@model FirstApp.Services.ViewModels.Discussion.DiscussionViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="text-center">Discussion</h1>
+
+<hr />
+@if (User.IsInRole("Admin"))
+{
+    <div class="col-8">
+        <form asp-area="Administration" asp-controller="Discussions" asp-action="Delete" method="post" asp-route-id="@Model.Id" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-primery"></div>
+
+            <div class="form-group text-center">
+                <input type="submit" value="Delete" class="btn btn-dark"/>
+            </div>
+        </form>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 card text-white bg-dark ">
+        <h5 class="text-center">@Model.Title</h5>
+    </div>
+    @foreach (var comment in Model.Comments)
+    {
+    <div class="row justify-content-center col-12">
+        <div class="card w-75 mr-md-1 text-white bg-dark">
+            <div class="card-body">
+                <h5 id="headingName" class="card-title">@comment.FirstAppUser.FirstName</h5>
+                
+                <p class="card-text text-center">@comment.Content</p>
+                
+                <div class="card-footer">
+                    <span id="spanDate">@comment.CreatedOn</span>
+                    <a  class="float-right btn replyBtn" href="#commentSection" >reply</a>                   
+                </div>    
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+    <div id="commentSection" class="d-flex justify-content-center">
+        @if (User.Identity.IsAuthenticated)
+        {
+        <div class="col-8">
+            <form asp-controller="Discussions" asp-action="AddComment" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-primery"></div>
+                <div class="form-group">
+                    <label asp-for="Comments" class="control-label"></label>
+                    <textarea id="commentTextArea" asp-for="CurrentCommentContent" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="CurrentCommentContent" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Id" type="hidden" value="@Model.Id">
+                </div>
+                <div class="form-group text-center">
+                    <input type="submit" value="Create" class="btn btn-dark" />
+                </div>
+            </form>
+        </div>
+        }
+        else
+        {
+        <div>
+            <a class="nav-link text-white bg-dark" asp-area="Identity" asp-page="/Account/Login">Login to comment.</a>
+        </div>
+        }
+    </div>
+
+
+    <div>
+        <a asp-controller="Home" asp-action="Index">Back to Home</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        
+        <script>
+            $(".replyBtn").click(function (e) {
+                
+                var commentFooter = e.target.parentElement;
+                var commentBody = commentFooter.parentElement;
+                var commentName = commentBody.getElementsByTagName("h5")[0].textContent;
+                var commentDate = commentFooter.getElementsByTagName("span")[0].textContent;
+                
+
+                var textArea = document.getElementById("commentTextArea");
+                textArea.textContent = "To " + commentName + " comment from " + commentDate + ": \n";               
+            })
+        </script>
+    }

@@ -30,26 +30,6 @@ namespace FirstApp.Web.Controllers
             return View(model);
         }
 
-        // TODO delete
-        //public IActionResult Create()
-        //{           
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public IActionResult Create(DiscussionViewModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return this.View(model);
-        //    }
-
-
-        //    DiscussionService.CreateDiscussion(model);
-
-        //    return RedirectToAction(nameof(Index));   
-        //}
-
         public IActionResult Details(int id)
         {
             DiscussionViewModel discussionViewModel = DiscussionService.DetailsDiscussion(id);

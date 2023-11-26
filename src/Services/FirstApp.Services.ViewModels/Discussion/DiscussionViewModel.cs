@@ -29,7 +29,6 @@ namespace FirstApp.Services.ViewModels.Discussion
 
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
-
             configuration.CreateMap<DiscussionViewModel, Data.Models.Discussion>()
                 .ForMember(x => x.Comments, x => x.Ignore())
                 .ForMember(x => x.LastActivity, x => x.Ignore());

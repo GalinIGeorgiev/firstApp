@@ -1,0 +1,24 @@
+﻿@model List<FirstApp.Services.ViewModels.Discussion.DiscussionViewModel>;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="w-75 discussion-container">
+    <div class="row">
+        @foreach (var discussion in Model)
+        {
+            <div class="col-10">               
+                <div class="card mr-md-1 text-white bg-dark">
+                    <a class="text-white"  asp-controller="Discussions" asp-action="Details" asp-route-id="@discussion.Id">
+                        <div class="card-body">
+                            <h1 class="card-title text-center">@discussion.Title</h1>
+                            <p class="text-right">Last Activity @discussion.LastActivity</p>
+                        </div>
+                    </a>  
+                </div>               
+            </div>
+        }
+    </div>
+</div>
+
+
