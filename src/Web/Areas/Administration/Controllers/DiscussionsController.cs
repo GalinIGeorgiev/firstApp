@@ -32,6 +32,7 @@ namespace FirstApp.Web.Areas.Administration.Controllers
             return View();
         }
 
+
         [HttpPost]
         public IActionResult Create(DiscussionViewModel model)
         {
@@ -40,18 +41,21 @@ namespace FirstApp.Web.Areas.Administration.Controllers
                 return this.View(model);
             }
 
-
             DiscussionService.CreateDiscussion(model);
 
             return RedirectToAction(nameof(Index));   
         }
 
-        // TODO
-        //public IActionResult Details(int id)
-        //{
-        //    DiscussionViewModel discussionViewModel = DiscussionService.DetailsDiscussion(id);
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            DiscussionService.DeleteDiscussion(id);
 
-        //    return View(discussionViewModel);
-        //}
+            var model = DiscussionService.AllDiscussions().ToList();
+
+
+            
+            return View(nameof(Index),model);
+        }
     }
 }

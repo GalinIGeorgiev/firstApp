@@ -8,10 +8,11 @@ namespace FirstApp.Services.Contracts
 {
     public interface IDiscussionService
     {
-        ICollection<DiscussionViewModel> AllDiscussions();
+        IEnumerable<DiscussionViewModel> AllDiscussions();
 
 
-        void CreateDiscussion(DiscussionViewModel model);
+        void CreateDiscussion(DiscussionViewModel model); 
+        void DeleteDiscussion(int id); 
 
         DiscussionViewModel DetailsDiscussion(int id);
 
