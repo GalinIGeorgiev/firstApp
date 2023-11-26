@@ -26,6 +26,7 @@ namespace FirstApp.Services
             comment.FirstAppUser = user;    
             comment.Content = commentText;
             comment.ArticleId = articleId;
+
             var article = ArticleService.GiveArticleById(articleId);
 
             Db.Comments.Add(comment);
@@ -35,7 +36,7 @@ namespace FirstApp.Services
             return articleId;
         }
 
-        public int AddCommentToDiscussion(FirstAppUser user, string commentText, int discussionId)
+        public void AddCommentToDiscussion(FirstAppUser user, string commentText, int discussionId)
         {
             // TODO
             var comment = new Comment();
@@ -43,13 +44,13 @@ namespace FirstApp.Services
             comment.FirstAppUser = user;
             comment.Content = commentText;
             comment.DiscussionId = discussionId;
+
             var discussion = DiscussionService.GiveDiscussionById(discussionId);
 
             Db.Comments.Add(comment);
             discussion.AddComment(comment);
 
             Db.SaveChanges();
-            return discussionId;
         }
     }
 }

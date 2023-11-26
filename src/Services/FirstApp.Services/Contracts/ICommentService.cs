@@ -7,7 +7,7 @@ namespace FirstApp.Services.Contracts
     {
         int AddCommentToArticle(FirstAppUser user,string commentText,int articleId);
 
-        int AddCommentToDiscussion(FirstAppUser user,string commentText,int discussionId);
+        void AddCommentToDiscussion(FirstAppUser user,string commentText,int discussionId);
 
 
     }
