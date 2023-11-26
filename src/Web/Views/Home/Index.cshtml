@@ -17,10 +17,10 @@
         <div class="card h-100 ml-lg-1 text-white bg-dark">
             <div class="card-body">
                 <h5 class="card-title">Future content</h5>
-                <div>Love Kari</div>
+                @*<div>Love Kari</div>
                 <br />
                 <button id="loveButton" class="w-100 mb-1 bg-primary">press to see the best couple</button>
-                <img id="loveImg" hidden src="Images/343100052_759740352285042_247166928697031046_n.png" />
+                <img id="loveImg" hidden src="Images/343100052_759740352285042_247166928697031046_n.png" />*@
 
                 <p class="card-text">
                     Where does it come from?
@@ -55,26 +55,8 @@
 </div>
 
 
-@section Scripts
-    {
-    <script>
-        $("#loveButton").click(function () {
-            var btn = document.getElementById("loveButton");
 
-            console.log(btn.textContent);
-            if (btn.textContent === "press to see the best couple") {
 
-                btn.textContent = "Hide the best couple";
-                document.getElementById("loveImg").removeAttribute("hidden");
-                removeAttribute("hidden");
-            } else {
-
-                btn.textContent = "press to see the best couple";
-                document.getElementById("loveImg").setAttribute("hidden", "hidden");
-            }
-        })
-    </script>
-}
 
 
 

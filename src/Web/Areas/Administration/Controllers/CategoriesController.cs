@@ -27,6 +27,7 @@ namespace FirstApp.Web.Areas.Administration.Controllers
             {
                 return this.View(model);
             }
+
             categoriesService.CreateCategory(model);
 
             return RedirectToAction("Index","Home");

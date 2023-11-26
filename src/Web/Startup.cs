@@ -69,9 +69,7 @@ namespace FirstApp.Web
                              options.Password.RequireUppercase = false;
                              options.Password.RequireNonAlphanumeric = false;
                              options.Password.RequiredUniqueChars = 0;
-
                          }
-
                     )
                         .AddDefaultTokenProviders()
                         .AddDefaultUI()
@@ -84,7 +82,6 @@ namespace FirstApp.Web
                     {
                         facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
                         facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-
                     });
 
 

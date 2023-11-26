@@ -64,6 +64,7 @@ namespace FirstApp.Web.Areas.Administration.Controllers
             }
 
             int newArticleId = ArticleService.Create(model);
+
             //images
             if (model.Images != null)
             {

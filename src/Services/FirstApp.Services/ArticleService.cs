@@ -29,10 +29,11 @@ namespace FirstApp.Services
 
 
         public int Create(CreateArticleViewModel model)
-        {
+        {          
             var article = Mapper.Map<Article>(model);
             this.db.Articles.Add(article);
             this.db.SaveChanges();
+
             return article.Id;
         }
 
@@ -57,7 +58,7 @@ namespace FirstApp.Services
 
             return article;
         }
-
+        
         public IEnumerable<ArticleViewModel> GiveRandomArticles()
         {
             var articles = db.Articles.Include(x => x.Category).OrderBy(x => Guid.NewGuid()).To<ArticleViewModel>().Take(12).ToList();

@@ -7,24 +7,24 @@
 <div class="container-fluid col-md-8 ">
     <div class="card text-white bg-dark text-center ">
         <div>
-            <img src="@Model.ImageUrl"  class="img-fluid">
+            <img src="@Model.ImageUrl"  class="w-100">
         </div>
         <div>
-            <h4> @Html.DisplayFor(model => model.Title)</h4>
+            <h4 class="mt-2"> @Html.DisplayFor(model => model.Title)</h4>
         </div>
         <hr />
-        <div>
+        <p class="text-left m-2">
             @Model.Content
-        </div>
+        </p>
         @if (@Model.VideoUrl != null)
         {
-            <hr />
+            <hr/>
             <video controls="controls">
                 <source src="@Model.VideoUrl" type="video/mp4">
             </video>
         }
         <hr />
-        <div class="text-right">
+        <div class="text-right mr-2">
             @Model.CreatedOn
         </div>
     </div>
