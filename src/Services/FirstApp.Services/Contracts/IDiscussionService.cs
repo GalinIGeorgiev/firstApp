@@ -12,7 +12,7 @@ namespace FirstApp.Services.Contracts
 
 
         void CreateDiscussion(DiscussionViewModel model); 
-        void DeleteDiscussion(int id); 
+        bool DeleteDiscussion(int id); 
 
         DiscussionViewModel DetailsDiscussion(int id);
 

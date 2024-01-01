@@ -17,15 +17,18 @@ namespace FirstApp.Web.Controllers
     public class HomeController : BaseController
     {
         public IArticleService ArticleService;
+        public ISurveyService SurveyService;
 
-        public HomeController(IArticleService articleService)
+        public HomeController(IArticleService articleService, ISurveyService surveyService)
         {
             this.ArticleService = articleService;
+            this.SurveyService = surveyService;
         }
         public IActionResult Index(IndexArticleViewModel viewModel)
         {
              viewModel.Articles = ArticleService.GiveRandomArticles().ToList();
-               
+             viewModel.ActiveSurveys = SurveyService.GiveActiveSurveys();
+
             return View(viewModel);
         }
 

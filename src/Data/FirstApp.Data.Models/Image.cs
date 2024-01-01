@@ -8,6 +8,5 @@ namespace FirstApp.Data.Models
 
         public int? ArticleId { get; set; }
         public virtual Article Article { get; set; }
-
     }
 }

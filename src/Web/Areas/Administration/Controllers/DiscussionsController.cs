@@ -49,13 +49,16 @@ namespace FirstApp.Web.Areas.Administration.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            DiscussionService.DeleteDiscussion(id);
+
+            if (!DiscussionService.DeleteDiscussion(id))
+            {
+                return this.View();
+            }
 
             var model = DiscussionService.AllDiscussions().ToList();
 
+            return View(nameof(Index), model);
 
-            
-            return View(nameof(Index),model);
         }
     }
 }

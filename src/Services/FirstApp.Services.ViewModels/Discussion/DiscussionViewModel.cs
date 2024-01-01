@@ -15,7 +15,7 @@ namespace FirstApp.Services.ViewModels.Discussion
         }
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Полето\"{0}\" e задължително.")]
+        [Required(ErrorMessage = "Полето \"{0}\" e задължително.")]
         [Display(Name = "Тема за дискусия")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Полето \"{0}\" трябва да бъде текст с минимална дължина {2} и максимална дължина {1}.")]
         public string Title { get; set; }
@@ -32,10 +32,6 @@ namespace FirstApp.Services.ViewModels.Discussion
             configuration.CreateMap<DiscussionViewModel, Data.Models.Discussion>()
                 .ForMember(x => x.Comments, x => x.Ignore())
                 .ForMember(x => x.LastActivity, x => x.Ignore());
-
-            // TODO
-            //configuration.CreateMap<Data.Models.Discussion,DiscussionViewModel>()
-            //    .ForMember(x=>x.Comments)
         }
     }
 }

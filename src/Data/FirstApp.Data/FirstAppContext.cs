@@ -23,7 +23,7 @@ namespace FirstApp.Data
         public DbSet<Image> Images { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Video> Videos { get; set; }
-       // public DbSet<Poll> Polls { get; set; }
+        public DbSet<Survey> Surveys { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Discussion> Discussions { get; set; }
         public DbSet<Comment> Comments { get; set; }

@@ -66,7 +66,9 @@ namespace SandBox
             Image image = new Image()
             {
                 ImageUrl =
-                    "https://media.gettyimages.com/photos/liverpool-captain-steven-gerrard-lifts-the-european-cup-after-won-picture-id53158414"
+                    "https://media.gettyimages.com/photos/liver" +
+                    "pool" +
+                    "-captain-steven-gerrard-lifts-the-european-cup-after-won-picture-id53158414"
             };
             Image image2 = new Image()
             {

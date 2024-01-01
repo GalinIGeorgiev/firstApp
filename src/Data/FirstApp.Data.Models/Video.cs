@@ -10,6 +10,7 @@ namespace FirstApp.Data.Models
     {
 
         public string Sport { get; set; }
+
         public string Team { get; set; }
 
         public string VideoUrl { get; set; }

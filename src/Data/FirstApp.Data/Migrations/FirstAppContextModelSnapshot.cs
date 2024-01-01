@@ -200,6 +200,25 @@ namespace FirstApp.Data.Migrations
                     b.ToTable("Reviews");
                 });
 
+            modelBuilder.Entity("FirstApp.Data.Models.Survey", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("countVotes");
+
+                    b.Property<bool>("isActive");
+
+                    b.Property<string>("option");
+
+                    b.Property<string>("surveyQuestion");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Surveys");
+                });
+
             modelBuilder.Entity("FirstApp.Data.Models.Team", b =>
                 {
                     b.Property<int>("Id")

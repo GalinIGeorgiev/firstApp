@@ -17,7 +17,7 @@ namespace FirstApp.Data.Models
 
         public string LastActivity { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
         public void AddComment(Comment comment)
         {

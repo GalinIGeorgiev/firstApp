@@ -36,14 +36,20 @@ namespace FirstApp.Services
         }
 
 
-        public void DeleteDiscussion(int id)
+        public bool DeleteDiscussion(int id)
         {
             var disscussion = GiveDiscussionById(id);
+            if (disscussion==null)
+            {
+                return false;
+            }
 
             disscussion.Comments.Clear();
 
             Db.Discussions.Remove(disscussion);
             Db.SaveChanges();
+
+            return true;
         }
 
 

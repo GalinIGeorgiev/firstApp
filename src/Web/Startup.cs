@@ -94,6 +94,7 @@ namespace FirstApp.Web
                     services.AddScoped<IVideoService, VideoService>();
                     services.AddScoped<ICommentService, CommentService>();
                     services.AddScoped<IDiscussionService, DiscussionService>();
+                    services.AddScoped<ISurveyService, SurveyService>();
 
                 }
 

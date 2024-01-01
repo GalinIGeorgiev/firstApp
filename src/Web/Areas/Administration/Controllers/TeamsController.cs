@@ -35,15 +35,10 @@ namespace FirstApp.Web.Areas.Administration.Controllers
             {
                 return this.View();
             }
-            TeamService.CreateTeam(model);
-            return View();
-        }
 
-        // TODO
-        //[HttpPost]
-        //public async Task<IActionResult> Create(CreateArticleViewModel model)
-        //{
-        //    return View();
-        //}
+            TeamService.CreateTeam(model);
+
+           return RedirectToAction("Index", "Home");
+        }
     }
 }

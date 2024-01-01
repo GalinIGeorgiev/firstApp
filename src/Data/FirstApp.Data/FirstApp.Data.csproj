@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Compile Remove="Migrations\20190305162238_AddTeamEntity.cs" />
+    <Compile Remove="Migrations\20231201142830_AddingPools.cs" />
   </ItemGroup>
 
   <ItemGroup>

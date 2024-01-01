@@ -12,6 +12,7 @@ namespace FirstApp.Data.Models
             this.Comments = new HashSet<Comment>();
             this.Reviews = new HashSet<Review>();
         }
+
         [MaxLength(20)]
         [MinLength(2)]
         public string FirstName { get; set; }

@@ -19,7 +19,7 @@ namespace FirstApp.Data.Models
         }
         public string Content { get; set; }
 
-        public string CreatedOn { get; set; } = DateTime.UtcNow.ToString();
+        public string CreatedOn { get; set; } = DateTime.UtcNow.AddHours(2).ToString();
 
         public string Title { get; set; }
 
@@ -51,7 +51,6 @@ namespace FirstApp.Data.Models
             {
                 rating = ((decimal)reviews.Sum(x => x.Raiting)) / reviews.Count;
             }
-
 
             return rating;
         }

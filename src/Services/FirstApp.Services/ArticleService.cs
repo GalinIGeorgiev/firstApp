@@ -61,9 +61,11 @@ namespace FirstApp.Services
         
         public IEnumerable<ArticleViewModel> GiveRandomArticles()
         {
-            var articles = db.Articles.Include(x => x.Category).OrderBy(x => Guid.NewGuid()).To<ArticleViewModel>().Take(12).ToList();
 
-            return articles;
+            var articles = db.Articles.Include(x => x.Category);
+            var articleViewModels = articles.To<ArticleViewModel>().Skip(Math.Max(0, articles.Count() - 12)).ToList();
+
+            return articleViewModels;
         }
 
         public void AddImageUrls(int id, IEnumerable<string> imageUrls)

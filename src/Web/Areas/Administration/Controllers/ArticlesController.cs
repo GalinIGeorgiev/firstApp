@@ -10,10 +10,11 @@ using FirstApp.Services.Contracts;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using FirstApp.Services.ViewModels.Home;
 using FirstApp.Data.Common;
+using FirstApp.Web.Controllers;
 
 namespace FirstApp.Web.Areas.Administration.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class ArticlesController : AdministrationBaseController
     {
         private ICategoryService CategoryService;
@@ -86,7 +87,7 @@ namespace FirstApp.Web.Areas.Administration.Controllers
                 this.ArticleService.AddVideoUrls(newArticleId, videoUrls);
             }
 
-            return View();
+            return RedirectToAction("Index","Home");
         }
     }
 }
