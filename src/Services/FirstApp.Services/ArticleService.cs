@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml.Xsl;
 using AutoMapper;
 using FirstApp.Data;
+using FirstApp.Data.Common;
 using FirstApp.Data.Models;
 using FirstApp.Services.Contracts;
 using FirstApp.Services.Mapping;
@@ -12,7 +13,7 @@ using FirstApp.Services.ViewModels.Articles;
 using FirstApp.Services.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
+
 
 namespace FirstApp.Services
 {
@@ -54,16 +55,15 @@ namespace FirstApp.Services
 
         public Article GiveArticleById(int id)
         {
-            var article = db.Articles.Where(x => x.Id == id).FirstOrDefault();
+            var article = db.Articles.Where(x => x.Id == id).Include(x=>x.Team).FirstOrDefault();
 
             return article;
         }
-        
+
         public IEnumerable<ArticleViewModel> GiveRandomArticles()
         {
-
-            var articles = db.Articles.Include(x => x.Category);
-            var articleViewModels = articles.To<ArticleViewModel>().Skip(Math.Max(0, articles.Count() - 12)).ToList();
+            var articles = db.Articles.Include(x=>x.TeamId).Include(x => x.Team).Include(x => x.Category).Skip(Math.Max(0, db.Articles.Count() - GlobalConstants.NUMBER_OF_ARTICLES_INDEX));
+            var articleViewModels = articles.To<ArticleViewModel>().ToList();
 
             return articleViewModels;
         }
