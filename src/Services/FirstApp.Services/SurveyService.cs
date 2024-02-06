@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using FirstApp.Data;
@@ -50,32 +51,30 @@ namespace FirstApp.Services
             this.db.SaveChanges();        
         }
 
-        public DetailsArticleViewModel DetailsArticle(int Id)
-        {
-            var article = db.Articles.Where(x => x.Id == Id).Include(x => x.Team).Include(x => x.Category)
-                .Include(x => x.Images).Include(x => x.Videos).Include(x=>x.Comments).ThenInclude(x=>x.FirstAppUser).FirstOrDefault();
-
-            var model = Mapper.Map<DetailsArticleViewModel>(article);
-
-            // TODO no articles without img
-            if (model.ImageUrl == null)
-            {
-                model.ImageUrl= "\\Images\\defaultPic.png";
-            }
-            return model;
-        }
-
+ 
         public ManageSurveysViewModel ManageSurveys(ManageSurveysViewModel model)
         {
             List<Survey> Surveys = db.Surveys.Skip(Math.Max(0, db.Surveys.Count() - GlobalConstants.NUMBER_OF_SURVEYS_MANAGED)).ToList();
 
-
             for (int i = 0; i < Surveys.Count(); i++)
             {
-                model.surveyQuestions.Add(Surveys[i].surveyQuestion);
+                //TODO survey mapper
+                if (model.surveyQuestions.Any(x => x.surveyQuestion == Surveys[i].surveyQuestion))
+                {
+                    continue;
+                }
+
+                model.surveyQuestions.Add(
+                        new SurveyDTO()
+                        {                           
+                            surveyQuestion = Surveys[i].surveyQuestion,
+                            isActive = Surveys[i].isActive
+                        }
+                    );
+                            
             }
 
-            model.surveyQuestions = model.surveyQuestions.Distinct().ToList();
+            model.surveyQuestions = model.surveyQuestions.ToList();
 
             return model;
         }
@@ -84,6 +83,7 @@ namespace FirstApp.Services
         {
             //TODO
             var surveys = db.Surveys.Where(x=>x.isActive==true);
+
             var activeSurveysViewModel = new List<ActiveSurveysViewModel>();
             var surveyQuestionChecker = string.Empty;
             ActiveSurveysViewModel viewModel = new ActiveSurveysViewModel();
@@ -116,10 +116,29 @@ namespace FirstApp.Services
                     continue;
                 }
             }
-            activeSurveysViewModel.Add(viewModel);
+
+            if (viewModel.surveyQuestion != null)
+            {
+                activeSurveysViewModel.Add(viewModel);
+            }
+            
 
             return activeSurveysViewModel;
         }
 
+        public void SetActiveSurveys(ManageSurveysViewModel model)
+        {
+            for (int i = 0; i < model.surveyQuestions.Count; i++)
+            {
+               List<Survey> surveys= db.Surveys.Where(x => x.surveyQuestion == model.surveyQuestions[i].surveyQuestion).ToList();
+
+                foreach (var survey in surveys)
+                {
+                    survey.isActive = model.surveyQuestions[i].isActive;
+                }
+            }
+
+            db.SaveChanges();
+        }
     }
 }

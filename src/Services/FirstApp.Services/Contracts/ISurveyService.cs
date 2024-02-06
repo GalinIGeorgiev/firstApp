@@ -15,6 +15,9 @@ namespace FirstApp.Services.Contracts
         ICollection<ActiveSurveysViewModel> GiveActiveSurveys();
 
         ManageSurveysViewModel ManageSurveys(ManageSurveysViewModel model);
+        void SetActiveSurveys(ManageSurveysViewModel model);
+
+
 
     }
 }

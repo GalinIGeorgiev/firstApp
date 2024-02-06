@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using FirstApp.Data.Models;
+using FirstApp.Services.Contracts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FirstApp.Web.Areas.Identity.Pages.Account.Manage
 {
@@ -16,16 +18,19 @@ namespace FirstApp.Web.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<FirstAppUser> _userManager;
         private readonly SignInManager<FirstAppUser> _signInManager;
+        private readonly ITeamService _teamService;
         private readonly IEmailSender _emailSender;
 
         public IndexModel(
             UserManager<FirstAppUser> userManager,
             SignInManager<FirstAppUser> signInManager,
-            IEmailSender emailSender)
+            ITeamService teamService,
+        IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _teamService = teamService;
         }
 
         public string Username { get; set; }
@@ -52,6 +57,10 @@ namespace FirstApp.Web.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            
+            [Display(Name = "Favorite Team")]
+            public string FavoriteTeam { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -66,15 +75,24 @@ namespace FirstApp.Web.Areas.Identity.Pages.Account.Manage
 
             
             var firstName =  user.FirstName;
+            var favoriteTeam =  user.FavoriteTeam;
             var email = await _userManager.GetEmailAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
-            
+            this.ViewData["Teams"] = this._teamService.GetAllTeams()
+                .Select(x => new SelectListItem
+                {
+                    Value = x.Name.ToString(),            
+                    Text = x.Name.ToString()                  
+                });
+
+
             Input = new InputModel
             {
                 Email = email,
                 PhoneNumber = phoneNumber,
-                FirstName = firstName
+                FirstName = firstName,
+                FavoriteTeam = favoriteTeam
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
@@ -94,7 +112,15 @@ namespace FirstApp.Web.Areas.Identity.Pages.Account.Manage
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-                       
+
+            if (Input.FavoriteTeam != user.FavoriteTeam)
+            {
+                //todo
+                user.FavoriteTeam = (_userManager.Users.FirstOrDefault(x => x.Id == user.Id).FavoriteTeam = Input.FavoriteTeam);
+                var result = user.FavoriteTeam;
+
+            }
+
             if (Input.FirstName != user.FirstName)
             {
                 
@@ -130,6 +156,7 @@ namespace FirstApp.Web.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+            await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();

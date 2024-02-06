@@ -1,5 +1,9 @@
-﻿@using Microsoft.AspNetCore.Identity.UI.V4.Pages.Internal
+﻿@using FirstApp.Data.Models
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Identity.UI.V4.Pages.Internal
 @model FirstApp.Services.ViewModels.Home.IndexArticleViewModel
+@inject SignInManager<FirstAppUser> SignInManager
+@inject UserManager<FirstAppUser> UserManager
 
 @{
     ViewData["Title"] = "Home Page";
@@ -13,46 +17,78 @@
 
 
 <div class="row justify-content-center">
-    <div class="col-lg-3">
-        <div class="card h-100 ml-lg-1 text-white bg-dark">
-            <div class="card-body">
-                <h5 class="card-title">Future content</h5>
-                @*<div>Love Kari</div>
-                <br />
-                <button id="loveButton" class="w-100 mb-1 bg-primary">press to see the best couple</button>
-                <img id="loveImg" hidden src="Images/343100052_759740352285042_247166928697031046_n.png" />*@
 
-                <p class="card-text">
-                    Where does it come from?
-                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
-                    literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,
-                    looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature,
-                    discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.
-                    The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-                </p>
+    <div class="w-75 row">
 
-                <h5 class="card-footer"></h5>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            var favoriteTeam = UserManager.GetUserAsync(User).Result.FavoriteTeam;
+            @if (favoriteTeam != null)
+
+            {
+                <h3 class="w-100 text-center mb-1">Favorite Team News</h3>
+
+
+                @foreach (var article in Model.Articles.Reverse().Where(x => x.Team == favoriteTeam).Take(4))
+                {
+                    <div class="article-container bg-dark text-white mb-3">
+                        <a asp-controller="Articles" asp-action="DetailsArticle" asp-route-id="@article.Id">
+                            <img src="@article.ImageUrl" class="img-article" />
+                            <div class="article-title text-white">
+                                <span>@article.Title</span>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+        }
+
+        <h3 class="w-100 text-center mb-1">Newest</h3>
+
+        @foreach (var article in Model.Articles.Reverse())
+        {
+            <div class="article-container bg-dark text-white mb-3">
+                <a asp-controller="Articles" asp-action="DetailsArticle" asp-route-id="@article.Id">
+                    <img src="@article.ImageUrl" class="img-article" />
+                    <div class="article-title text-white">
+                        <span>@article.Title</span>
+                    </div>
+                </a>
             </div>
-        </div>
+        }
+
+
     </div>
 
-    <div class="col-lg-9 row">
-        
-            @foreach (var article in Model.Articles)
-            {
+    
+    <div class="w-25 row ml-1">        
 
-                <div class="article-container bg-dark text-white">
-                    <a asp-controller="Articles" asp-action="DetailsArticle" asp-route-id="@article.Id">
-                        <img src="@article.ImageUrl" class="img-article"/>
-                        <div class="article-title text-white">
-                            <span>@article.Title</span>  
-                        </div>
-                    </a>
-                </div>
-            }
+        <h3 class="text-center mb-1">Surveys</h3>
+
+            <div class="card text-white bg-dark h-100">
+
+                @{
+                    @if (Model.ActiveSurveys.Count > 0)
+                     {
+                         <partial name="_Survey" model="Model"/>
+                     }
+                }
+            </div>
+        </div>
         
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
