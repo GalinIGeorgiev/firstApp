@@ -1,0 +1,33 @@
+﻿@model FirstApp.Services.ViewModels.Home.IndexArticleViewModel
+
+
+
+
+<form  asp-controller="Surveys" asp-action="AddVote" method="post" id="form" class="px-4">
+   
+        @for (int i = 0; i < Model.ActiveSurveys.Count; i++)
+        {
+            var survey = Model.ActiveSurveys.ElementAt(i);
+
+            <p class="fw-bold text-center m-3">
+                @survey.surveyQuestion
+            </p>
+
+            @foreach (var option in survey.OptionsDictionary)
+             {                 
+                 <div class="form-check mb-2">
+                     <input class="form-check-input"  name="group @i" type="radio"/>
+                     <label class="form-check-label" for="radioExample @i">
+                         @option.Key : @option.Value
+                     </label>
+                 </div>
+                 <hr/>
+
+             }
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary mb-1">Submit</button>
+            </div>
+            <hr class="alert-light"/>
+        }
+</form>
+

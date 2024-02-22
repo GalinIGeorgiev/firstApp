@@ -1,0 +1,35 @@
+﻿@using System.Security.Cryptography
+@model FirstApp.Services.ViewModels.Survey.ManageSurveysViewModel
+
+@{
+    ViewData["Title"] = "ManageSurveys";
+}
+
+<h1 class="text-center mb-5">Choose which surveys to be active.</h1>
+
+
+<form asp-controller="Surveys" asp-action="SetActiveSurveys" method="post">
+
+
+    @for (int i = 0; i < Model.surveyQuestions.Count; i++)
+    {
+        <h1>@Model.surveyQuestions[i].surveyQuestion</h1>
+
+        <div class="form-group">           
+            <input asp-for="@Model.surveyQuestions[i].surveyQuestion"  hidden=""/>
+            <span asp-validation-for="@Model.surveyQuestions[i].surveyQuestion" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.surveyQuestions[i].isActive" class="control-label">Survey will be Active</label>
+            <input asp-for="@Model.surveyQuestions[i].isActive" class="form-control" />
+            <span asp-validation-for="@Model.surveyQuestions[i].isActive" class="text-danger"></span>
+        </div>
+        <hr />
+    }
+
+
+    <div class="form-group text-center">
+        <input type="submit" value="Create" class="btn btn-dark" />
+    </div>
+</form>

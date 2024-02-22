@@ -1,0 +1,55 @@
+﻿@using System.Linq
+@model FirstApp.Services.ViewModels.Survey.CreateSurveyViewModel
+
+@{
+    ViewData["Title"] = "Add Options to Survey";
+}
+<h1 class="text-center">Add Options to Survey</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="AddSurveyOptions" method="post" id="form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="surveyQuestion" class="control-label"></label>
+                <input asp-for="surveyQuestion" class="form-control" value="@Model.surveyQuestion" readonly>
+                <span asp-validation-for="surveyQuestion" class="text-danger"></span>
+            </div>
+
+            @for (int i = 0; i < @Model.numberOfOptions; i++)
+            {
+                <div class="form-group">
+                    <label  class="control-label">Опции</label>
+                    <input asp-for="options[i].surveyOption" class="form-control">
+                    <span asp-validation-for="options[i].surveyOption" class="text-danger"></span>
+                </div>
+            }
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        
+<script type="text/javascript">
+    $("#addOptionBtn").on('click', function () {
+        $.ajax({
+            async: true,
+            data: $('#form').serialize(),
+            type: "Post",
+            url: '/Surveys/AddOption'          
+        })
+    })
+</script>
+}
+

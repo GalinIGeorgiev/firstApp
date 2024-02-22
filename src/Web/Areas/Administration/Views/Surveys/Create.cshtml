@@ -1,0 +1,69 @@
+﻿@using System.Linq
+@model FirstApp.Services.ViewModels.Survey.CreateSurveyViewModel
+
+
+@{
+    ViewData["Title"] = "Create Survey";
+}
+<h1 class="text-center">Create Survey</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="View" method="post" id="form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="surveyQuestion" class="control-label"></label>
+                <input asp-for="surveyQuestion" class="form-control">
+                <span asp-validation-for="surveyQuestion" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="numberOfOptions" class="control-label"></label>
+                <input asp-for="numberOfOptions" class="form-control">
+                <span asp-validation-for="numberOfOptions" class="text-danger"></span>
+            </div>
+
+            @*<div>
+                <partial name="_OptionsPartialView"/>              
+            </div>*@
+
+            
+            @*<div class="form-group">
+                <label asp-for="option" class="control-label"></label>
+                <input asp-for="options[0]" class="form-control">
+                <span asp-validation-for="option" class="text-danger"></span>
+             
+                <input id="addOptionBtn" type="button" class="btn btn-primary" value="Add"/>
+            </div>*@
+            
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        
+    @*<script type="text/javascript">
+
+        
+        $("#addOptionBtn").on('click', function () {
+            $.ajax({
+                async: true,
+                data: $('#form').serialize(),
+                type: "Post",
+                url: '/Surveys/AddOption'          
+            })
+        })
+    </script>*@
+}
+
