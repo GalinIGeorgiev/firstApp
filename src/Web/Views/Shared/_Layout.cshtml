@@ -20,53 +20,52 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm  box-shadow mb-3 navbar-custom">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Champion</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm  box-shadow mb-3 p-3 navbar-custom">       
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Champion</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <partial name="_LoginPartial" />
+                <ul class="navbar-nav flex-grow-1">
 
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-white"  asp-controller="Discussions" asp-action="Index">Discussions</a>
-                            </li>
-                        }
-                    </ul>
-                    @if (User.IsInRole("Admin"))
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
                     {
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Admin panel
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Articles" asp-action="Create">Create a new article</a>
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Categories" asp-action="Create">Create a new category</a>
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Teams" asp-action="Create">Create a new team</a>
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Discussions" asp-action="Create">Create a new discussion</a>
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Surveys" asp-action="Create">Create a new survey</a>
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Surveys" asp-action="ManageSurveys">Manage Surveys</a>
-                            </div>
-                        </div>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Discussions" asp-action="Index">Discussions</a>
+                        </li>
                     }
-
-
-                </div>
+                </ul>
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin panel
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" asp-area="Administration" asp-controller="Articles" asp-action="Create">Create a new article</a>
+                            <a class="dropdown-item" asp-area="Administration" asp-controller="Categories" asp-action="Create">Create a new category</a>
+                            <a class="dropdown-item" asp-area="Administration" asp-controller="Teams" asp-action="Create">Create a new team</a>
+                            <a class="dropdown-item" asp-area="Administration" asp-controller="Discussions" asp-action="Create">Create a new discussion</a>
+                            <a class="dropdown-item" asp-area="Administration" asp-controller="Surveys" asp-action="Create">Create a new survey</a>
+                            <a class="dropdown-item" asp-area="Administration" asp-controller="Surveys" asp-action="ManageSurveys">Manage Surveys</a>
+                        </div>
+                    </div>
+                }
             </div>
-        </nav>
-    </header>
+            <hr class="m-3" />
+        </div>
+    </nav>
+</header>
 
     <div>
         <partial name="_CookieConsentPartial" />

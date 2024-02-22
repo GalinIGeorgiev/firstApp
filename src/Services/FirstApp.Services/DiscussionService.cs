@@ -29,6 +29,7 @@ namespace FirstApp.Services
 
         public void CreateDiscussion(DiscussionViewModel model)
         {                    
+
             var discussion = Mapper.Map<Discussion>(model);
 
             Db.Discussions.Add(discussion);

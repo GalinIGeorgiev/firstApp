@@ -13,6 +13,10 @@ namespace FirstApp.Services.ViewModels.Home
 
         public IEnumerable<ArticleViewModel> Articles { get; set; }
 
+        private IEnumerable<ArticleViewModel> favoriteArticles;
+
+        public IEnumerable<ArticleViewModel> FavoriteArticles { get; set; }
+
         private IEnumerable<ActiveSurveysViewModel> activeSurveys;
 
         public  ICollection<ActiveSurveysViewModel> ActiveSurveys { get; set; }

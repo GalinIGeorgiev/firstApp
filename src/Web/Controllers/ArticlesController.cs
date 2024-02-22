@@ -27,6 +27,7 @@ namespace FirstApp.Web.Controllers
         public IActionResult AddComment(DetailsArticleViewModel model)
         {
             var user = UserManager.FindByNameAsync(User.Identity.Name).Result;
+            
             var articleId = model.Id;
          
             var commentText = model.CurrentCommentContent;

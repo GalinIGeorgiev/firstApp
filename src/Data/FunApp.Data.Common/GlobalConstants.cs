@@ -16,5 +16,7 @@ namespace FirstApp.Data.Common
         public const int NUMBER_OF_SURVEYS_MANAGED = 20;
 
         public const int NUMBER_OF_ARTICLES_INDEX = 10;
+
+        public const int NUMBER_OF_FAVORITE_ARTICLES_INDEX = 4;
     }
 }

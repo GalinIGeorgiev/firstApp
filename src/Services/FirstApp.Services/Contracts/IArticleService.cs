@@ -10,6 +10,9 @@ namespace FirstApp.Services.Contracts
     public interface IArticleService
     {
         IEnumerable<ArticleViewModel> GiveRandomArticles();
+
+        IEnumerable<ArticleViewModel> GiveFavoriteArticles(string favoriteTeam);
+
         int Create(CreateArticleViewModel model);
 
         DetailsArticleViewModel DetailsArticle(int Id);

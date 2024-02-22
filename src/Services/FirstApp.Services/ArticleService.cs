@@ -68,6 +68,15 @@ namespace FirstApp.Services
             return articleViewModels;
         }
 
+        public IEnumerable<ArticleViewModel> GiveFavoriteArticles(string favoriteTeam)
+        {
+            var articles = db.Articles.Where(x => x.Team.Name == favoriteTeam).Include(x => x.TeamId)
+                .Include(x => x.Team).Include(x => x.Category);
+            var articleViewModels = articles.To<ArticleViewModel>().ToList();
+
+            return articleViewModels;
+        }
+
         public void AddImageUrls(int id, IEnumerable<string> imageUrls)
         {
             var product = this.db.Articles.Include(x => x.Images)
