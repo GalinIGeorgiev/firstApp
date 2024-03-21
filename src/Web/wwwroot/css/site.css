@@ -46,7 +46,8 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background: #93fad1;
+    /*background: #93fad1;*/
+    background: #00ad93;
     color: black;
 }
 
@@ -61,7 +62,7 @@ footer {
 }
 
 
- 
+
 
 /*navbar*/
 .navbar-custom {
@@ -72,7 +73,7 @@ footer {
     /* change the brand and text color */
     .navbar-custom .navbar-brand,
     .navbar-custom .navbar-text {
-        color: #93fad1;
+        color: #00ad93;
     }
 
 
@@ -101,7 +102,7 @@ footer {
 }
 
 #dropdownMenuButton {
-    background-color: #69fac0;
+    background-color: #00ad93;
 }
 
 
@@ -117,7 +118,6 @@ footer {
 }
 
 .container {
-    
     padding-right: 5px;
     padding-left: 5px;
 }
@@ -132,7 +132,7 @@ footer {
     margin-bottom: 5px;
 }
 
-.card-body{
+.card-body {
     padding-bottom: 0px;
 }
 
@@ -168,15 +168,17 @@ footer {
     border-radius: 2px;
 }
 
-.article-container {
-    position: relative;
-    text-align: center;
-    overflow: hidden;
-    margin: 1px;
-    max-height: auto;
-    width: 49%;
-    border-radius: 2px;
-}
+
+    .article-container {
+        position: relative;
+        text-align: center;
+        overflow: hidden;
+        margin: 4px;
+        max-height: auto;
+        width: 49%;
+        border-radius: 2px;
+        
+    }
 
 
 .article-title {
@@ -188,9 +190,9 @@ footer {
 }
 
 
-.article-title span {
-    color: white;
-}
+    .article-title span {
+        color: white;
+    }
 
 
 .img-article {
@@ -229,7 +231,7 @@ video source[src=''] {
 }
 
 .discussion-container {
-    justify-content:space-around;
+    justify-content: space-around;
     margin: auto;
 }
 

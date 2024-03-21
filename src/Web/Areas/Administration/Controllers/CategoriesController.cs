@@ -23,6 +23,7 @@ namespace FirstApp.Web.Areas.Administration.Controllers
         [HttpPost]
         public IActionResult Create(CreateCategoryViewModel model)
         {
+
             if (!ModelState.IsValid)
             {
                 return this.View(model);

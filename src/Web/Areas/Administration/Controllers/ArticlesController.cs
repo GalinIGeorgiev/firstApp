@@ -25,7 +25,11 @@ namespace FirstApp.Web.Areas.Administration.Controllers
 
 
 
-        public ArticlesController(ICategoryService categoryService, ITeamService teamService, IArticleService articleService, IImageService imageService, IVideoService videoService)
+        public ArticlesController(ICategoryService categoryService,
+            ITeamService teamService,
+            IArticleService articleService,
+            IImageService imageService,
+            IVideoService videoService)
         {
             CategoryService = categoryService;
             TeamService = teamService;

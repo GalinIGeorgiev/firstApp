@@ -25,7 +25,7 @@ namespace FirstApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryId");
+                    b.Property<int?>("CategoryId");
 
                     b.Property<string>("Content");
 
@@ -240,15 +240,23 @@ namespace FirstApp.Data.Migrations
 
                     b.Property<int?>("ArticleId");
 
-                    b.Property<string>("Sport");
+                    b.Property<int?>("CategoryId");
 
-                    b.Property<string>("Team");
+                    b.Property<string>("CreatedOn");
+
+                    b.Property<int?>("TeamId");
+
+                    b.Property<string>("Title");
 
                     b.Property<string>("VideoUrl");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ArticleId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("TeamId");
 
                     b.ToTable("Videos");
                 });
@@ -367,8 +375,7 @@ namespace FirstApp.Data.Migrations
                 {
                     b.HasOne("FirstApp.Data.Models.Category", "Category")
                         .WithMany("Articles")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("FirstApp.Data.Models.Team", "Team")
                         .WithMany()
@@ -415,6 +422,14 @@ namespace FirstApp.Data.Migrations
                     b.HasOne("FirstApp.Data.Models.Article", "Article")
                         .WithMany("Videos")
                         .HasForeignKey("ArticleId");
+
+                    b.HasOne("FirstApp.Data.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+
+                    b.HasOne("FirstApp.Data.Models.Team", "Team")
+                        .WithMany()
+                        .HasForeignKey("TeamId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

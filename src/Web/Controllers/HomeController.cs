@@ -19,32 +19,35 @@ namespace FirstApp.Web.Controllers
     {
         public IArticleService ArticleService;
         public ISurveyService SurveyService;
+        public IVideoService VideoService;
         private UserManager<FirstAppUser> UserManager;
 
-        public HomeController(IArticleService articleService, ISurveyService surveyService, UserManager<FirstAppUser> userManager)
+        public HomeController(IArticleService articleService, ISurveyService surveyService, IVideoService videoService, UserManager<FirstAppUser> userManager)
         {
             this.ArticleService = articleService;
             this.SurveyService = surveyService;
+            this.VideoService = videoService;
             this.UserManager = userManager;
         }
         public IActionResult Index(IndexArticleViewModel viewModel)
         {
-            var user =  UserManager.GetUserAsync(User).Result;
+            var user = UserManager.GetUserAsync(User).Result;
 
             viewModel.Articles = ArticleService.GiveRandomArticles().ToList();
 
-            if (  user!=null && user.FavoriteTeam != null)
+            if (user != null && user.FavoriteTeam != null)
             {
                 viewModel.FavoriteArticles = ArticleService.GiveFavoriteArticles(user.FavoriteTeam).ToList();
             }
 
-           
+            viewModel.Videos = VideoService.GiveNewVideos();
+
             viewModel.ActiveSurveys = SurveyService.GiveActiveSurveys();
-             
+
             return View(viewModel);
         }
 
-       
+
         public IActionResult Privacy()
         {
             return View();

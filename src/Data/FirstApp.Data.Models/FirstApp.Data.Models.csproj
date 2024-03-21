@@ -12,4 +12,10 @@
     <ProjectReference Include="..\FunApp.Data.Common\FirstApp.Data.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Video.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
 </Project>

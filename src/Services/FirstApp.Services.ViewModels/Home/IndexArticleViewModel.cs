@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FirstApp.Data.Models;
 using FirstApp.Services.ViewModels.Survey;
+using FirstApp.Services.ViewModels.Video;
 
 namespace FirstApp.Services.ViewModels.Home
 {
@@ -20,6 +21,10 @@ namespace FirstApp.Services.ViewModels.Home
         private IEnumerable<ActiveSurveysViewModel> activeSurveys;
 
         public  ICollection<ActiveSurveysViewModel> ActiveSurveys { get; set; }
+
+        private IEnumerable<VideoViewModel> videos;
+
+        public  ICollection<VideoViewModel> Videos { get; set; }
 
 
 
