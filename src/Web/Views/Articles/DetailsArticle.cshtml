@@ -7,7 +7,7 @@
 <div class="container-fluid col-md-8 ">
     <div class="card text-white bg-dark text-center ">
         <div>
-            <img src="@Model.ImageUrl"  class="w-100">
+            <img src="@Model.ImageUrl" class="w-100">
         </div>
         <div>
             <h4 class="mt-2"> @Html.DisplayFor(model => model.Title)</h4>
@@ -18,7 +18,7 @@
         </p>
         @if (@Model.VideoUrl != null)
         {
-            <hr/>
+            <hr />
             <video controls="controls">
                 <source src="@Model.VideoUrl" type="video/mp4">
             </video>
@@ -44,12 +44,12 @@
             </div>
         </div>
     }
-    
-    
-    
+
+
+
     <div class="d-flex justify-content-center">
         @if (User.Identity.IsAuthenticated)
-        { 
+        {
             <div class="col-8">
                 <form asp-controller="Articles" asp-action="AddComment" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-primery"></div>
@@ -62,7 +62,7 @@
                         <input asp-for="Id" type="hidden" value="@Model.Id">
                     </div>
                     <div class="form-group text-center">
-                        <input type="submit" value="Create" class="btn btn-dark"/>
+                        <input type="submit" value="Create" class="btn btn-dark" />
                     </div>
                 </form>
             </div>

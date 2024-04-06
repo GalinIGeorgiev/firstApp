@@ -11,11 +11,25 @@
 
 
 
+<div class="row justify-content-around">
 
+    @for (int i = 0; i < Model.Videos.Count; i++)
+    {
+        var video = Model.Videos.ElementAt(i);
+
+        <video controls="controls" width="260">
+            <source src="@video.VideoUrl" type="video/mp4" />
+        </video>
+    }
+
+</div>
+<hr />
 
 <div class="row justify-content-around">
 
     <div class="article-box">
+
+
 
         @if (SignInManager.IsSignedIn(User))
         {
@@ -26,7 +40,7 @@
                 <h3 class="w-75 text-center m-1">Favorite Team News</h3>
 
 
-                @foreach (var article in Model.FavoriteArticles.Reverse().Where(x => x.Team == favoriteTeam).Take(4))
+                @foreach (var article in Model.FavoriteArticles.Reverse())
                 {
                     <div class="article-container bg-dark text-white mb-1">
                         <a asp-controller="Articles" asp-action="DetailsArticle" asp-route-id="@article.Id">
@@ -57,27 +71,31 @@
 
     </div>
 
-    
-    <div class="survey-box">        
+
+    <div class="survey-box">
 
         <h3 class="text-center m-1">Surveys</h3>
 
-            <div class="card text-white bg-dark h-100">
+        <div class="card text-white bg-dark h-100">
 
-                @{
-                    @if (Model.ActiveSurveys.Count > 0)
-                     {
-                         <partial name="_Survey" model="Model"/>
-                     }
+            @{
+                @if (Model.ActiveSurveys.Count > 0)
+                {
+                    <partial name="_Survey" model="Model" />
                 }
-            </div>
+            }
         </div>
-        
     </div>
 
+</div>
 
 
+@section Scripts
+    {
+    <script>
 
+    </script>
+}
 
 
 

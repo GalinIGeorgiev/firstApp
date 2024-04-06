@@ -22,7 +22,7 @@ namespace FirstApp.Web.Areas.Administration.Controllers
 
         public SurveysController(ISurveyService surveyService)
         {
-            SurveyService = surveyService;           
+            SurveyService = surveyService;
         }
 
 
@@ -30,7 +30,7 @@ namespace FirstApp.Web.Areas.Administration.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-           
+
             return View();
         }
 
@@ -46,7 +46,7 @@ namespace FirstApp.Web.Areas.Administration.Controllers
             return View("AddSurveyOptions", model);
         }
 
-       [HttpGet]
+        [HttpGet]
         public IActionResult ManageSurveys(ManageSurveysViewModel model)
         {
             model = SurveyService.ManageSurveys(model);
@@ -63,7 +63,7 @@ namespace FirstApp.Web.Areas.Administration.Controllers
 
 
 
-            return View("ManageSurveys", model);
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -78,8 +78,8 @@ namespace FirstApp.Web.Areas.Administration.Controllers
 
             SurveyService.Create(model);
 
-            return RedirectToAction("Index", "Home");
-            
+            return RedirectToAction("ManageSurveys");
+
         }
     }
 }

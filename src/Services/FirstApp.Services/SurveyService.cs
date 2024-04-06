@@ -91,8 +91,7 @@ namespace FirstApp.Services
             foreach (var survey in surveys)
             {
                 if (surveyQuestionChecker == survey.surveyQuestion)
-                {
-                    
+                {                  
                     viewModel.OptionsDictionary[survey.option] = survey.countVotes;
                 }
                 else
