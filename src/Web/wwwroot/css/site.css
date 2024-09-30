@@ -43,10 +43,17 @@ html {
     min-height: 100%;
 }
 
+header {
+    position: sticky;
+    top: 0px;
+    width: 100%;
+    z-index: 1000000;
+}
+
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    /*background: #93fad1;*/
+    z-index: 0;
     background: #00ad93;
     color: black;
 }
@@ -256,4 +263,8 @@ video source[src=''] {
     min-height: 1px;
     padding-right: 1px;
     padding-left: 1px;
+}
+
+#top {
+    top: -100px;
 }

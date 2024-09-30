@@ -12,7 +12,7 @@
 
 
 <div class="row justify-content-around">
-
+    
     @for (int i = 0; i < Model.Videos.Count; i++)
     {
         var video = Model.Videos.ElementAt(i);
@@ -28,8 +28,6 @@
 <div class="row justify-content-around">
 
     <div class="article-box">
-
-
 
         @if (SignInManager.IsSignedIn(User))
         {
@@ -67,11 +65,7 @@
                 </a>
             </div>
         }
-
-
     </div>
-
-
     <div class="survey-box">
 
         <h3 class="text-center m-1">Surveys</h3>
@@ -80,20 +74,52 @@
 
             @{
                 @if (Model.ActiveSurveys.Count > 0)
-                {
-                    <partial name="_Survey" model="Model" />
-                }
+                 {
+                     <partial name="_Survey" model="Model" />
+                 }
             }
         </div>
     </div>
-
+    
+    
 </div>
 
 
-@section Scripts
-    {
-    <script>
+@section Scripts {
 
+    <script>
+        //$.ajax({
+        //    url: '/Products/Cartup',
+        //    type: "GET",
+        //    data: { quantity: $(this).val(), proid: productId , price: price },
+        //    dataType: "JSON",
+        //    success: function (data) { alert("success"); },
+        //    error: function (err) { }
+        //});
+
+
+
+        $(document).ready(function() {
+            $("#submit").click(function() {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("AddVote", "Surveys")",
+                    data: { "name": "aide222ee" },
+                    success: function(result) {
+                        console.log(result);
+                        console.log("gggg");
+                    },
+                    faulure: function(result) {
+                        console.log(result);
+                        console.log("gggg");
+                    },
+                    error: function(req, status, error) {
+                        console.log(status);
+                        console.log("gggg");
+                    }
+                })
+            })
+        })
     </script>
 }
 

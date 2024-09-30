@@ -139,5 +139,17 @@ namespace FirstApp.Services
 
             db.SaveChanges();
         }
+
+        public void AddVote(int id)
+        {
+            id = 1;
+            var survey= db.Surveys.FirstOrDefault(x => x.Id == id);
+            if (survey != null)
+            {
+                survey.countVotes++;
+            }
+            
+            db.SaveChanges();
+        }
     }
 }

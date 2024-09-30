@@ -16,6 +16,7 @@ namespace FirstApp.Services.Contracts
 
         ManageSurveysViewModel ManageSurveys(ManageSurveysViewModel model);
         void SetActiveSurveys(ManageSurveysViewModel model);
+        void AddVote(int id);
 
 
 

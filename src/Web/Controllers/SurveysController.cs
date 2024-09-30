@@ -33,16 +33,18 @@ namespace FirstApp.Web.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-
             return View();
         }
 
 
         [HttpPost]
-        public IActionResult AddVote(IndexArticleViewModel model)
+        public IActionResult AddVote(string name)
         {
+            SurveyService.AddVote(1);
+            Console.WriteLine("333GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG");
+            Console.WriteLine(name);
 
-            return View();
+            return View("_Survey");
         }
     }
 }

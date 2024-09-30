@@ -39,7 +39,6 @@ namespace FirstApp.Services
                 UploadVideo(model.Videos.FirstOrDefault(), videoPath);
 
                 model.VideoUrl = (videoPath.Replace(hostingEnvironment.WebRootPath, ""));
-
             }
 
             var video = Mapper.Map<Video>(model);
